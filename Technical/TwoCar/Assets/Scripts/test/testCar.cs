@@ -23,10 +23,10 @@ public class testCar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-           Turn();
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //   Turn();
+        //}
 
         if (Mathf.Abs(transform.rotation.eulerAngles.z - (360.0f + rotationTarget) % 360.0f) <= 5.0f)
         {
@@ -52,7 +52,7 @@ public class testCar : MonoBehaviour {
         }
     }
 
-    void Turn()
+    public void Turn()
     {
         if (isLeft)
         {
