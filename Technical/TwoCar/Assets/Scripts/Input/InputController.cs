@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class InputController : MonoBehaviour, IPointerDownHandler
 {
-    public testCar car;
+    public Car car;
 	// Use this for initialization
 	void Start () {
 	
