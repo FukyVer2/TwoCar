@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ScrollBackground : MonoBehaviour
 {
-    public float scrollSpeed;
     public Vector3 startPosition;
     public float size;
 	// Use this for initialization
@@ -14,12 +13,15 @@ public class ScrollBackground : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    
+
 	}
 
     void FixedUpdate()
     {
+        float scrollSpeed = GameManager.Instance.speed;
         float newPosition = Mathf.Repeat(Time.time * scrollSpeed, size);
         transform.position = startPosition + Vector3.down * newPosition;
+       //transform.position += new Vector3(0, -scrollSpeed) * Time.deltaTime;
+
     }
 }

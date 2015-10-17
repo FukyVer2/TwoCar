@@ -13,6 +13,7 @@ public class Car : MonoBehaviour {
     public bool isMove = false;
     public Vector3 targetPos;
     public GameObject start;
+    public GameManager gameManager;
 
 	void Start ()
 	{
@@ -69,6 +70,28 @@ public class Car : MonoBehaviour {
             isMove = true;
             targetPos = left.transform.position;
             isLeft = true;
+        }
+        AudioManager.Instance.TurnSound(transform.position);
+    }
+
+    void GameOver()
+    {
+        GameManager.Instance.GameOver();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Fuel")
+        {
+            GameManager.Instance.AddScore();
+            GameManager.Instance.RemoveGameObject(other.gameObject);
+            AudioManager.Instance.Ting(transform.position);
+            Destroy(other.gameObject);
+        }
+        else if(other.tag == "Block")
+        {
+            GameManager.Instance.ClearListGameObject();
+            GameOver();
         }
     }
 }
