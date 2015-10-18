@@ -21,5 +21,9 @@ public class LoseCol : MonoBehaviour
             GameManager.Instance.GameOver();
             GameManager.Instance.ClearListGameObject();
         }
+        else if (other.tag == "Block")
+        {
+            GameManager.Instance.RemoveGameObject(other.gameObject);
+        }
     }
 }

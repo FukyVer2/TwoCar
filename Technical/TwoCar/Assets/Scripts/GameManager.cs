@@ -8,6 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject play;
     public GameObject start;
     public GameObject over;
+    public GameObject pause;
     public GameObject playObj;
     public List<GameObject> listGameObjects;
     public int highScore;
@@ -18,8 +19,12 @@ public class GameManager : MonoSingleton<GameManager>
     public float speed;
     public float minDelay;
     public float maxDelay;
-    public float scrollSpeed;
+    public bool isPause = false;
     public AudioClip backgroundSound;
+
+    private float _bkSpeed;
+    private float _bkMinDelay;
+    private float _bkMaxDelay;
 
 	void Start ()
 	{
@@ -58,6 +63,7 @@ public class GameManager : MonoSingleton<GameManager>
         score = 0;
         playScore.text = "Score: " + score;
         ResetSpeed();
+        ClearListGameObject();
         AudioManager.Instance.StopBackground();
         AudioManager.Instance.Background();
         play.SetActive(true);
@@ -121,5 +127,38 @@ public class GameManager : MonoSingleton<GameManager>
     public void RemoveObj(GameObject obj)
     {
         listGameObjects.Remove(obj);
+    }
+
+    public void BackUp()
+    {
+        _bkSpeed = speed;
+        _bkMinDelay = minDelay;
+        _bkMaxDelay = maxDelay;
+    }
+
+    public void Pause()
+    {
+        BackUp();
+        pause.SetActive(true);
+        speed = 0;
+        minDelay = 0;
+        maxDelay = 0;
+        isPause = true;
+    }
+
+    public void Unpause()
+    {
+        pause.SetActive(false);
+        speed = _bkSpeed;
+        minDelay = _bkMinDelay;
+        maxDelay = _bkMaxDelay;
+        isPause = false;
+    }
+
+    public void Replay()
+    {
+        pause.SetActive(false);
+        Unpause();
+        PlayScene();
     }
 }

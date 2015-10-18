@@ -21,17 +21,9 @@ public class EnemySpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	    if (delay > 0)
+	    if (!GameManager.Instance.isPause)
 	    {
-	        delay -= Time.deltaTime;
-	    }
-	    else
-	    {
-	        SpawnEnemy();
-	        GameManager.Instance.speed += velo;
-            GameManager.Instance.minDelay -= velo / 9;
-            GameManager.Instance.maxDelay -= velo / 9;
-            delay = Random.Range(GameManager.Instance.minDelay, GameManager.Instance.maxDelay);            
+            Spawn();
 	    }
 	}
 
@@ -46,11 +38,11 @@ public class EnemySpawner : MonoBehaviour
         int randPos = Random.Range(1, 10);
         if (randPos%2 == 0)
         {
-            return new Vector3(transform.position.x + 0.7f, transform.position.y);
+            return new Vector3(transform.position.x + 0.7f, transform.position.y, transform.position.z);
         }
         else
         {
-            return new Vector3(transform.position.x - 0.7f, transform.position.y);
+            return new Vector3(transform.position.x - 0.7f, transform.position.y, transform.position.z);
         }
     }
 
@@ -62,7 +54,22 @@ public class EnemySpawner : MonoBehaviour
         instance.transform.SetParent(parent.transform);
         Enemy enemy = instance.GetComponent<Enemy>();
         enemy.speed = GameManager.Instance.speed;
-//        Debug.Log(GameManager.Instance.speed);
         GameManager.Instance.AddGameObject(instance);
+    }
+
+    void Spawn()
+    {
+        if (delay > 0)
+        {
+            delay -= Time.deltaTime;
+        }
+        else
+        {
+            SpawnEnemy();
+            GameManager.Instance.speed += velo;
+            GameManager.Instance.minDelay -= velo / 9;
+            GameManager.Instance.maxDelay -= velo / 9;
+            delay = Random.Range(GameManager.Instance.minDelay, GameManager.Instance.maxDelay);
+        }
     }
 }

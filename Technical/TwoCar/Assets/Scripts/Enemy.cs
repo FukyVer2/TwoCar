@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
     public float speed;
-    public bool isPause = false;
     public GameManager gameManager;
 	void Start () 
     {
@@ -12,7 +11,7 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (!isPause)
+	    if (!GameManager.Instance.isPause)
 	    {
             Move();
 	    }
