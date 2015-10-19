@@ -74,11 +74,6 @@ public class Car : MonoBehaviour {
         AudioManager.Instance.TurnSound(transform.position);
     }
 
-    void GameOver()
-    {
-        GameManager.Instance.GameOver();
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Fuel")
@@ -91,7 +86,7 @@ public class Car : MonoBehaviour {
         else if(other.tag == "Block")
         {
             GameManager.Instance.ClearListGameObject();
-            GameOver();
+            GameManager.Instance.GameOver();
         }
     }
 }
