@@ -18,8 +18,9 @@ public class LoseCol : MonoBehaviour
     {
         if (other.tag == "Fuel")
         {
-            GameManager.Instance.GameOver();
-            GameManager.Instance.ClearListGameObject();
+            //GameManager.Instance.GameOver();
+            GameManager.Instance.dieDelay = 1f;
+            GameManager.Instance.isDie = true;
         }
         else if (other.tag == "Block")
         {

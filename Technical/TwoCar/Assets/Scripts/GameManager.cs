@@ -24,7 +24,9 @@ public class GameManager : MonoSingleton<GameManager>
     public Image background;
     public Color randColor;
     public Color previousBackgroundColor;
-    public float t = 0;
+    public float t = 0; // time to change backgroudn color.
+    public float dieDelay = 0;
+    public bool isDie = false;
 
     private float _bkSpeed;
     private float _bkMinDelay;
@@ -43,6 +45,10 @@ public class GameManager : MonoSingleton<GameManager>
 	void Update ()
 	{
 	    ChangeBackgroundColor();
+	    if (isDie)
+	    {
+            Die();
+	    }
 	}
 
     public void GameOver()
@@ -69,7 +75,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         score = 0;
         playScore.text = "Score: " + score;
-        ResetSpeed();
+        Reset();
         ClearListGameObject();
         AudioManager.Instance.StopBackground();
         AudioManager.Instance.Background();
@@ -119,7 +125,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void AddScore()
     {
         score++;
-        if (score%10 == 0 && score !=0)
+        if (score%50 == 0 && score !=0)
         {
             previousBackgroundColor = background.color;
             Debug.Log("change color");
@@ -144,17 +150,20 @@ public class GameManager : MonoSingleton<GameManager>
         return score;
     }
 
-    public void ResetSpeed()
+    public void Reset()
     {
-        speed = 5;
+        background.color = Color.white;
+        previousBackgroundColor = Color.white;
+        randColor = Color.white;
+        speed = 6;
         minDelay = 0.6f;
-        maxDelay = 1f;
+        maxDelay = 0.8f;
     }
 
-    public void RemoveObj(GameObject obj)
-    {
-        listGameObjects.Remove(obj);
-    }
+    //public void RemoveObj(GameObject obj)
+    //{
+    //    listGameObjects.Remove(obj);
+    //}
 
     public void BackUp()
     {
@@ -191,9 +200,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void RandomBackgroundColor()
     {
-        float red =(float)Random.Range(80, 180) / 255;
-        float green = (float)Random.Range(80, 180) / 255;
-        float blue = (float)Random.Range(80, 180) / 255;
+        float red =(float)Random.Range(1, 255) / 255;
+        float green = (float)Random.Range(1, 255) / 255;
+        float blue = (float)Random.Range(1, 255) / 255;
         randColor = new Color(red,green,blue,1f);
         Debug.Log(randColor);
     }
@@ -212,4 +221,21 @@ public class GameManager : MonoSingleton<GameManager>
             t = 0;
         }
     }
+
+    public void Die()
+    {
+        if (dieDelay > 0)
+        {
+            Pause();
+            dieDelay -= Time.deltaTime;
+        }
+        else
+        {
+            isDie = false;
+            Unpause();
+            ClearListGameObject();
+            GameOver();
+        }
+    }
+
 }

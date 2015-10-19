@@ -18,21 +18,20 @@ public class Car : MonoBehaviour {
 	void Start ()
 	{
 	    transform.position = start.transform.position;
-	    //isLeft = true;
-	    //targetPos = right.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        Move();
         if (Mathf.Abs(transform.rotation.eulerAngles.z - (360.0f + rotationTarget) % 360.0f) <= 5.0f)
         {
             rotationTarget = 0;
         }
-
-        Rotation(rotationTarget);
-	    
+	    if (!GameManager.Instance.isDie)
+	    {
+            Move();
+            Rotation(rotationTarget);
+	    }
 
 	    if (transform.position == targetPos)
 	    {
@@ -78,6 +77,7 @@ public class Car : MonoBehaviour {
     {
         if (other.tag == "Fuel")
         {
+            GameObject fx = Instantiate(other.GetComponent<Enemy>().disappear, other.transform.position, Quaternion.identity) as GameObject;
             GameManager.Instance.AddScore();
             GameManager.Instance.RemoveGameObject(other.gameObject);
             AudioManager.Instance.Ting(transform.position);
@@ -85,8 +85,8 @@ public class Car : MonoBehaviour {
         }
         else if(other.tag == "Block")
         {
-            GameManager.Instance.ClearListGameObject();
-            GameManager.Instance.GameOver();
+            GameManager.Instance.dieDelay = 1;
+            GameManager.Instance.isDie = true;
         }
     }
 }
