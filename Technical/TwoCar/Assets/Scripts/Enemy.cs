@@ -48,4 +48,11 @@ public class Enemy : MonoBehaviour
             time++;
         }
     }
+
+    public void Reset()
+    {
+        speed = 0;
+        isBlinky = false;
+        time = 0;
+    }
 }

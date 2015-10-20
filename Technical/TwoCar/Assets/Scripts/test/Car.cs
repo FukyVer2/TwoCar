@@ -77,15 +77,16 @@ public class Car : MonoBehaviour {
     {
         if (other.tag == "Fuel")
         {
-            GameObject fx = Instantiate(other.GetComponent<Enemy>().disappear, other.transform.position, Quaternion.identity) as GameObject;
+            //GameObject fx = Instantiate(other.GetComponent<Enemy>().disappear, other.transform.position, Quaternion.identity) as GameObject;
+            PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().disappear, other.transform.position);
             GameManager.Instance.AddScore();
-            GameManager.Instance.RemoveGameObject(other.gameObject);
+            //GameManager.Instance.RemoveGameObject(other.gameObject);
+            PoolObject.DespawnObject("Enemy",other.gameObject);
             AudioManager.Instance.Ting(transform.position);
-            Destroy(other.gameObject);
         }
         else if(other.tag == "Block")
         {
-            GameManager.Instance.dieDelay = 1;
+            GameManager.Instance.dieDelay = 1.5f;
             GameManager.Instance.isDie = true;
         }
     }

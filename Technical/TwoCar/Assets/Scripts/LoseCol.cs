@@ -19,12 +19,13 @@ public class LoseCol : MonoBehaviour
         if (other.tag == "Fuel")
         {
             other.GetComponent<Enemy>().isBlinky = true;
-            GameManager.Instance.dieDelay = 1f;
+            GameManager.Instance.dieDelay = 1.5f;
             GameManager.Instance.isDie = true;
         }
         else if (other.tag == "Block")
         {
-            GameManager.Instance.RemoveGameObject(other.gameObject);
+            //GameManager.Instance.RemoveGameObject(other.gameObject);
+            PoolObject.DespawnObject("Enemy",other.gameObject);
         }
     }
 }

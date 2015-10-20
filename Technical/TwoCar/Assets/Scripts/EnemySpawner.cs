@@ -50,11 +50,12 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject obj = RandomObject();
         Vector3 pos = RandomPos();
-        GameObject instance =  Instantiate(obj, pos, Quaternion.identity) as GameObject;
-        instance.transform.SetParent(parent.transform);
+        //GameObject instance =  Instantiate(obj, pos, Quaternion.identity) as GameObject;
+        Transform instance = PoolObject.SpawnObject("Enemy", obj, pos);
+        //instance.transform.SetParent(parent.transform);
         Enemy enemy = instance.GetComponent<Enemy>();
         enemy.speed = GameManager.Instance.speed;
-        GameManager.Instance.AddGameObject(instance);
+        //GameManager.Instance.AddGameObject(instance);
     }
 
     void Spawn()

@@ -84,7 +84,9 @@ public class GameManager : MonoSingleton<GameManager>
         score = 0;
         playScore.text = "Score: " + score;
         Reset();
-        ClearListGameObject();
+        //ClearListGameObject();
+        PoolObject.DespawnAll("Enemy");
+        PoolObject.DespawnAll("Effect");
         AudioManager.Instance.StopBackground();
         AudioManager.Instance.Background();
         play.SetActive(true);
@@ -95,28 +97,28 @@ public class GameManager : MonoSingleton<GameManager>
 
    
 
-    public void AddGameObject(GameObject obj)
-    {
-        if (!listGameObjects.Contains(obj))
-            listGameObjects.Add(obj);
-    }
+    //public void AddGameObject(GameObject obj)
+    //{
+    //    if (!listGameObjects.Contains(obj))
+    //        listGameObjects.Add(obj);
+    //}
 
-    public void RemoveGameObject(GameObject obj)
-    {
-        if (listGameObjects.Contains(obj))
-        {
-            listGameObjects.Remove(obj);
-        }
-    }
+    //public void RemoveGameObject(GameObject obj)
+    //{
+    //    if (listGameObjects.Contains(obj))
+    //    {
+    //        listGameObjects.Remove(obj);
+    //    }
+    //}
 
-    public void ClearListGameObject()
-    {
-        foreach (GameObject obj in listGameObjects)
-        {
-            Destroy(obj);
-        }
-        listGameObjects.Clear();
-    }
+    //public void ClearListGameObject()
+    //{
+    //    foreach (GameObject obj in listGameObjects)
+    //    {
+    //        Destroy(obj);
+    //    }
+    //    listGameObjects.Clear();
+    //}
 
     public void AddScore()
     {
@@ -224,7 +226,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             isDie = false;
             Unpause();
-            ClearListGameObject();
+            //ClearListGameObject();
+            PoolObject.DespawnAll("Enemy");
+            PoolObject.DespawnAll("Effect");
             GameOver();
         }
     }
