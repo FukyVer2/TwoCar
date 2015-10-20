@@ -67,16 +67,20 @@ public class GameManager : MonoSingleton<GameManager>
         play.SetActive(false);
         start.SetActive(false);
         playObj.SetActive(false);
+        pause.SetActive(false);
     }
 
     public void StartScene()
     {
+        PoolObject.DespawnAll("Enemy");
+        PoolObject.DespawnAll("Effect");
         AudioManager.Instance.StopBackground();
         AudioManager.Instance.Background();
         start.SetActive(true);
         play.SetActive(false);
         over.SetActive(false);
         playObj.SetActive(false);
+        pause.SetActive(false);
     }
 
     public void PlayScene()
@@ -92,34 +96,11 @@ public class GameManager : MonoSingleton<GameManager>
         play.SetActive(true);
         over.SetActive(false);
         start.SetActive(false);
+        pause.SetActive(false);
         playObj.SetActive(true);
     }
 
-   
-
-    //public void AddGameObject(GameObject obj)
-    //{
-    //    if (!listGameObjects.Contains(obj))
-    //        listGameObjects.Add(obj);
-    //}
-
-    //public void RemoveGameObject(GameObject obj)
-    //{
-    //    if (listGameObjects.Contains(obj))
-    //    {
-    //        listGameObjects.Remove(obj);
-    //    }
-    //}
-
-    //public void ClearListGameObject()
-    //{
-    //    foreach (GameObject obj in listGameObjects)
-    //    {
-    //        Destroy(obj);
-    //    }
-    //    listGameObjects.Clear();
-    //}
-
+  
     public void AddScore()
     {
         score++;
@@ -193,9 +174,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void RandomBackgroundColor()
     {
-        float red =(float)Random.Range(1, 255) / 255;
-        float green = (float)Random.Range(1, 255) / 255;
-        float blue = (float)Random.Range(1, 255) / 255;
+        float red =(float)Random.Range(40, 210) / 255;
+        float green = (float)Random.Range(40, 210) / 255;
+        float blue = (float)Random.Range(40, 210) / 255;
         randColor = new Color(red,green,blue,1f);
         Debug.Log(randColor);
     }
