@@ -9,6 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject start;
     public GameObject over;
     public GameObject pause;
+    public GameObject countdown;
     public GameObject playObj;
     public List<GameObject> listGameObjects; // List of enemy on scene
     public int highScore;
@@ -27,6 +28,9 @@ public class GameManager : MonoSingleton<GameManager>
     public float t = 0; // time to change backgroudn color.
     public float dieDelay = 0;
     public bool isDie = false;
+    public Text timer;
+    public float countDown = 3;
+    public bool isCountDown = false;
 
     private float _bkSpeed;
     private float _bkMinDelay;
@@ -48,6 +52,10 @@ public class GameManager : MonoSingleton<GameManager>
 	    if (isDie)
 	    {
             Die();
+	    }
+	    if (isCountDown)
+	    {
+            Resume();
 	    }
 	}
 
@@ -85,19 +93,7 @@ public class GameManager : MonoSingleton<GameManager>
         playObj.SetActive(true);
     }
 
-    public void PauseScene()
-    {
-        if (!isPause)
-        {
-            Pause();
-            pause.SetActive(isPause);
-        }
-        else
-        {
-            Unpause();
-            pause.SetActive(isPause);
-        }
-    }
+   
 
     public void AddGameObject(GameObject obj)
     {
@@ -160,11 +156,6 @@ public class GameManager : MonoSingleton<GameManager>
         maxDelay = 0.8f;
     }
 
-    //public void RemoveObj(GameObject obj)
-    //{
-    //    listGameObjects.Remove(obj);
-    //}
-
     public void BackUp()
     {
         _bkSpeed = speed;
@@ -175,7 +166,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void Pause()
     {
         BackUp();
-        //pause.SetActive(true);
+        countDown = 3;
         speed = 0;
         minDelay = 0;
         maxDelay = 0;
@@ -184,7 +175,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Unpause()
     {
-        //pause.SetActive(false);
+        countDown = 0;
         speed = _bkSpeed;
         minDelay = _bkMinDelay;
         maxDelay = _bkMaxDelay;
@@ -238,4 +229,40 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    public void PauseScene()
+    {
+        if (!isPause)
+        {
+            Pause();
+            pause.SetActive(isPause);
+        }
+        else
+        {
+            Unpause();
+            pause.SetActive(isPause);
+        }
+    }
+
+    public void Resume()
+    {
+        if (countDown > 0)
+        {
+            countdown.SetActive(true);
+            pause.SetActive(false);
+            countDown -= Time.deltaTime;
+            int t = Mathf.CeilToInt(countDown);
+            timer.text = ""+t;
+        }
+        else
+        {
+            isCountDown = false;
+            countdown.SetActive(false);
+            PauseScene();
+        }
+    }
+
+    public void StartCd()
+    {
+        isCountDown = true;
+    }
 }

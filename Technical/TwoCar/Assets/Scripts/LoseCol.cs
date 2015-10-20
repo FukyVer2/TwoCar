@@ -18,7 +18,7 @@ public class LoseCol : MonoBehaviour
     {
         if (other.tag == "Fuel")
         {
-            //GameManager.Instance.GameOver();
+            other.GetComponent<Enemy>().isBlinky = true;
             GameManager.Instance.dieDelay = 1f;
             GameManager.Instance.isDie = true;
         }
