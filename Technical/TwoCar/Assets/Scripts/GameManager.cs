@@ -11,26 +11,40 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject pause;
     public GameObject countdown;
     public GameObject playObj;
-    public List<GameObject> listGameObjects; // List of enemy on scene
+    public GameObject audioManager;
+
     public int highScore;
     public int score = 0;
     public Text textScore;
     public Text textBestScore;
     public Text playScore;
+
     public float speed;     // Value to spawn Enemy
+    public float velo = 0.01f;
     public float minDelay;
     public float maxDelay;
+    public int enemyCount = 0;
+
     public bool isPause = false;  // Pause game
-    public AudioClip backgroundSound; //Audio
+    //public AudioClip backgroundSound; //Audio
+
     public Image background;
     public Color randColor;
     public Color previousBackgroundColor;
     public float t = 0; // time to change backgroudn color.
+
     public float dieDelay = 0;
     public bool isDie = false;
+
     public Text timer;
     public float countDown = 3;
     public bool isCountDown = false;
+
+    public bool music = true;
+    public float volume = 1;
+    public Sprite soundOn;
+    public Sprite soundOff;
+    public GameObject audioButton;
 
     private float _bkSpeed;
     private float _bkMinDelay;
@@ -72,6 +86,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void StartScene()
     {
+        Unpause();
         PoolObject.DespawnAll("Enemy");
         PoolObject.DespawnAll("Effect");
         AudioManager.Instance.StopBackground();
@@ -134,6 +149,8 @@ public class GameManager : MonoSingleton<GameManager>
         background.color = Color.white;
         previousBackgroundColor = Color.white;
         randColor = Color.white;
+        enemyCount = 0;
+        velo = 0.01f;
         speed = 6;
         minDelay = 0.6f;
         maxDelay = 0.8f;
@@ -249,5 +266,23 @@ public class GameManager : MonoSingleton<GameManager>
     public void StartCd()
     {
         isCountDown = true;
+    }
+
+    public void SoundControl()
+    {
+        if (music)
+        {
+            volume = 0;
+            AudioManager.Instance.Background();
+            audioButton.GetComponent<Image>().sprite = soundOff;
+            music = false;
+        }
+        else
+        {
+            volume = 1;
+            AudioManager.Instance.Background();
+            audioButton.GetComponent<Image>().sprite = soundOn;
+            music = true;
+        }
     }
 }

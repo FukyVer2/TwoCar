@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed;
     public GameObject disappear;
+    public GameObject explorer;
     public SpriteRenderer image;
     public bool isBlinky = false;
     public int time = 0;

@@ -9,13 +9,13 @@ public class EnemySpawner : MonoBehaviour
     //public float maxDelay;
     //public float speed = 4;
     public List<GameObject> obj;
-    public float velo = 0.01f;
+    //public float velo = 0.01f;
     public GameObject parent;
  
 	// Use this for initialization
 	void Start ()
 	{
-	    delay = Random.Range(2f, 5f);
+	    //delay = Random.Range(2f, 5f);
 	}
 	
 	// Update is called once per frame
@@ -50,12 +50,9 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject obj = RandomObject();
         Vector3 pos = RandomPos();
-        //GameObject instance =  Instantiate(obj, pos, Quaternion.identity) as GameObject;
         Transform instance = PoolObject.SpawnObject("Enemy", obj, pos);
-        //instance.transform.SetParent(parent.transform);
         Enemy enemy = instance.GetComponent<Enemy>();
         enemy.speed = GameManager.Instance.speed;
-        //GameManager.Instance.AddGameObject(instance);
     }
 
     void Spawn()
@@ -67,6 +64,21 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             SpawnEnemy();
+            GameManager.Instance.enemyCount++;
+            if (GameManager.Instance.enemyCount%50 == 0 && GameManager.Instance.enemyCount != 0)
+            {
+                Debug.Log("speed change");
+                if (GameManager.Instance.velo > 0)
+                {
+                    GameManager.Instance.velo *= -0.5f;
+                }
+                else
+                {
+                    GameManager.Instance.velo *= -2;
+                }
+                Debug.Log(GameManager.Instance.velo);
+            }
+            float velo = GameManager.Instance.velo;
             GameManager.Instance.speed += velo;
             GameManager.Instance.minDelay -= velo / 9;
             GameManager.Instance.maxDelay -= velo / 9;
