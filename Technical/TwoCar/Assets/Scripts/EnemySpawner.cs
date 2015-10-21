@@ -65,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
             GameManager.Instance.enemyCount++;
-            if (GameManager.Instance.enemyCount%50 == 0 && GameManager.Instance.enemyCount != 0)
+            if (GameManager.Instance.enemyCount%100 == 0 && GameManager.Instance.enemyCount != 0)
             {
                 Debug.Log("speed change");
                 if (GameManager.Instance.velo > 0)
