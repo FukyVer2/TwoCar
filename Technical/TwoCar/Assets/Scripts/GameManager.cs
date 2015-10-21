@@ -11,7 +11,7 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject pause;
     public GameObject countdown;
     public GameObject playObj;
-    public GameObject audioManager;
+    public GameObject garage;
 
     public int highScore;
     public int score = 0;
@@ -19,14 +19,13 @@ public class GameManager : MonoSingleton<GameManager>
     public Text textBestScore;
     public Text playScore;
 
-    public float speed;     // Value to spawn Enemy
+    public float speed = 5;     // Value to spawn Enemy
     public float velo = 0.01f;
-    public float minDelay;
-    public float maxDelay;
+    public float minDelay = 0.6f;
+    public float maxDelay = 0.8f;
     public int enemyCount = 0;
 
     public bool isPause = false;  // Pause game
-    //public AudioClip backgroundSound; //Audio
 
     public Image background;
     public Color randColor;
@@ -54,7 +53,6 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 	    highScore = PlayerPrefs.GetInt("Best Score");
         previousBackgroundColor = background.color;
-	    //randColor = previousBackgroundColor;
         Debug.Log(randColor);
 	    StartScene();
 	}
@@ -82,6 +80,8 @@ public class GameManager : MonoSingleton<GameManager>
         start.SetActive(false);
         playObj.SetActive(false);
         pause.SetActive(false);
+        garage.SetActive(false);
+
     }
 
     public void StartScene()
@@ -96,6 +96,7 @@ public class GameManager : MonoSingleton<GameManager>
         over.SetActive(false);
         playObj.SetActive(false);
         pause.SetActive(false);
+        garage.SetActive(false);
     }
 
     public void PlayScene()
@@ -113,9 +114,20 @@ public class GameManager : MonoSingleton<GameManager>
         start.SetActive(false);
         pause.SetActive(false);
         playObj.SetActive(true);
+        garage.SetActive(false);
+
     }
 
-  
+    public void CarShop()
+    {
+        garage.SetActive(true);
+        start.SetActive(false);
+        play.SetActive(false);
+        over.SetActive(false);
+        playObj.SetActive(false);
+        pause.SetActive(false);
+    }
+
     public void AddScore()
     {
         score++;
@@ -149,9 +161,8 @@ public class GameManager : MonoSingleton<GameManager>
         background.color = Color.white;
         previousBackgroundColor = Color.white;
         randColor = Color.white;
-        enemyCount = 0;
         velo = 0.01f;
-        speed = 6;
+        speed = 5;
         minDelay = 0.6f;
         maxDelay = 0.8f;
     }

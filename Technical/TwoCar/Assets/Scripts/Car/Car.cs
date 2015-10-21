@@ -6,7 +6,7 @@ public class Car : MonoBehaviour {
     public float rotationRight;
     public float speedRotation;
     public float speedMove;
-    private float rotationTarget = 0;
+    private float _rotationTarget = 0;
     public GameObject left;
     public GameObject right;
     public bool isLeft;
@@ -14,29 +14,51 @@ public class Car : MonoBehaviour {
     public Vector3 targetPos;
     public GameObject start;
     public GameManager gameManager;
+    public SpriteRenderer image;
+    public bool isBlinky = false;
+    public float duration = 1.25f;
+    public int time;
 
 	void Start ()
 	{
 	    transform.position = start.transform.position;
+        image = gameObject.GetComponent<SpriteRenderer>();
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        if (Mathf.Abs(transform.rotation.eulerAngles.z - (360.0f + rotationTarget) % 360.0f) <= 5.0f)
+        if (Mathf.Abs(transform.rotation.eulerAngles.z - (360.0f + _rotationTarget) % 360.0f) <= 5.0f)
         {
-            rotationTarget = 0;
+            _rotationTarget = 0;
         }
 	    if (!GameManager.Instance.isDie)
 	    {
             Move();
-            Rotation(rotationTarget);
+            Rotation(_rotationTarget);
 	    }
 
 	    if (transform.position == targetPos)
 	    {
-            rotationTarget = 0;
+            _rotationTarget = 0;
 	    }
+
+        if (isBlinky)
+        {
+            if (duration > 0)
+            {
+                duration -= Time.deltaTime;
+                Blinky();
+            }
+            else
+            {
+                image.enabled = true;
+                isBlinky = false;
+                duration = 1.25f;
+                time = 0;
+            }
+        }
 	}
 
     void Rotation(float rotationTarget)
@@ -58,14 +80,14 @@ public class Car : MonoBehaviour {
     {
         if (isLeft)
         {
-            rotationTarget = rotationRight;
+            _rotationTarget = rotationRight;
             isMove = true;
             targetPos = right.transform.position;
             isLeft = false;
         }
         else
         {
-            rotationTarget = rotationLeft;
+            _rotationTarget = rotationLeft;
             isMove = true;
             targetPos = left.transform.position;
             isLeft = true;
@@ -77,19 +99,36 @@ public class Car : MonoBehaviour {
     {
         if (other.tag == "Fuel")
         {
-            //GameObject fx = Instantiate(other.GetComponent<Enemy>().disappear, other.transform.position, Quaternion.identity) as GameObject;
             PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().disappear, other.transform.position);
             GameManager.Instance.AddScore();
-            //GameManager.Instance.RemoveGameObject(other.gameObject);
             PoolObject.DespawnObject("Enemy",other.gameObject);
             AudioManager.Instance.Ting(transform.position);
         }
         else if(other.tag == "Block")
         {
-            PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().explorer, other.transform.position);
-            PoolObject.DespawnObject("Enemy",other.gameObject);
-            GameManager.Instance.dieDelay = 1.5f;
+            isBlinky = true;
+            AudioManager.Instance.Crash(transform.position);
+            GameManager.Instance.dieDelay = 1.25f;
             GameManager.Instance.isDie = true;
+            ShakingCamera.Instance.Shake();
+        }
+    }
+
+    void Blinky()
+    {
+        if (image.color.a > 0 && time < 15 && time >= 0)
+        {
+            image.enabled = false;
+            time++;
+            if (time >= 15)
+            {
+                time = -15;
+            }
+        }
+        else
+        {
+            image.enabled = true;
+            time++;
         }
     }
 }

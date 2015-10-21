@@ -24,7 +24,6 @@ public class LoseCol : MonoBehaviour
         }
         else if (other.tag == "Block")
         {
-            //GameManager.Instance.RemoveGameObject(other.gameObject);
             PoolObject.DespawnObject("Enemy",other.gameObject);
         }
     }

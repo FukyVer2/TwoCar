@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 public enum SoundType
 {
-    TING = 1,
-    DRIFT = 2,
+    TING = 0,
+    DRIFT = 1,
+    VIBRATE = 2,
     BACKGROUND =3
 }
 
@@ -20,28 +21,31 @@ public class AudioManager : MonoSingleton<AudioManager>
     }
 
     public List<GameAudio> listAudios; 
-	// Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
 
     public void Ting(Vector3 position)
     {
-        AudioClip ting = listAudios[0].audioClip;
+        AudioClip ting = listAudios[(int)SoundType.TING].audioClip;
         AudioSource.PlayClipAtPoint(ting, position, GameManager.Instance.volume);
     }
 
     public void TurnSound(Vector3 position)
     {
-        AudioClip turn = listAudios[1].audioClip;
+        AudioClip turn = listAudios[(int)SoundType.DRIFT].audioClip;
         AudioSource.PlayClipAtPoint(turn, position, GameManager.Instance.volume);
     }
 
+    public void Crash(Vector3 position)
+    {
+        AudioClip crash = listAudios[(int)SoundType.VIBRATE].audioClip;
+        AudioSource.PlayClipAtPoint(crash, position, GameManager.Instance.volume);
+    }
     public void Background()
     {
         audio.volume = GameManager.Instance.volume;

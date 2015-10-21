@@ -18,11 +18,7 @@ public class PoolObject : MonoBehaviour {
     {
         SpawnPool pool = PoolManager.Pools[poolName];
         Transform gameObj = pool.Spawn(obj, pos, Quaternion.identity);
-        Enemy enemy = gameObj.GetComponent<Enemy>();
-        if (enemy)
-        {
-            enemy.Reset();
-        }
+        //Enemy enemy = gameObj.GetComponent<Enemy>();
         return gameObj;
     }
 
