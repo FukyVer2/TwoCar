@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -12,6 +13,7 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject countdown;
     public GameObject playObj;
     public GameObject garage;
+    public GameObject continuePlay;
 
     public int highScore;
     public Text textScore;
@@ -34,6 +36,9 @@ public class GameManager : MonoSingleton<GameManager>
     public float dieDelay = 0;
     public bool isDie = false;
     public bool isPlay = false;
+    public bool isContinue = true;
+    public float continueDelay = 3;
+    public Image continueImage;
 
     public Text timer;
     public float countDown = 3;
@@ -211,33 +216,34 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Die()
     {
-        if (dieDelay > 0)
+        if (!isPause)
         {
             Pause();
+            dieDelay = 1.5f;
+        }
+        if (dieDelay > 0)
+        {
             dieDelay -= Time.deltaTime;
         }
         else
         {
-            isDie = false;
-            Unpause();
-            //ClearListGameObject();
-            PoolObject.DespawnAll("Enemy");
-            PoolObject.DespawnAll("Effect");
-            GameOver();
+            continuePlay.SetActive(true);
+            ContinuePlay();
         }
     }
 
     public void PauseScene()
     {
+
         if (!isPause)
         {
             Pause();
-            pause.SetActive(isPause);
+            pause.SetActive(true);
         }
         else
         {
             Unpause();
-            pause.SetActive(isPause);
+            pause.SetActive(false);
         }
     }
 
@@ -246,10 +252,11 @@ public class GameManager : MonoSingleton<GameManager>
         if (countDown > 0)
         {
             countdown.SetActive(true);
+            continuePlay.SetActive(false);
             pause.SetActive(false);
             countDown -= Time.deltaTime;
             int t = Mathf.CeilToInt(countDown);
-            timer.text = ""+t;
+            timer.text = "" + t;
         }
         else
         {
@@ -261,7 +268,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void StartCd()
     {
+        Debug.Log(_bkSpeed);
+        Debug.Log(_bkMaxDelay);
+        Debug.Log(_bkMinDelay);
         isCountDown = true;
+        countDown = 3;
     }
 
     public void SoundControl()
@@ -299,5 +310,38 @@ public class GameManager : MonoSingleton<GameManager>
         speed += velo;
         minDelay -= velo / 9;
         maxDelay -= velo / 9;
+    }
+
+    public void ContinuePlay()
+    {
+        if (isContinue && continueDelay > 0)
+        {
+            continueDelay -= Time.deltaTime;
+            continueImage.fillAmount += Time.deltaTime/3;
+        }
+        else if (!isContinue)
+        {
+            isDie = false;
+            StartCd();
+            continueDelay = 3f;
+            continueImage.fillAmount = 0;
+            isContinue = true; 
+        }
+        else
+        {
+            isDie = false;
+            continueDelay = 3f;
+            continuePlay.SetActive(false);
+            continueImage.fillAmount = 0;
+            Unpause();
+            PoolObject.DespawnAll("Enemy");
+            PoolObject.DespawnAll("Effect");
+            GameOver();
+        }
+    }
+
+    public void ContinueButton()
+    {
+        isContinue = false;
     }
 }

@@ -27,7 +27,6 @@ public class Garage : MonoSingleton<Garage>
 	    }
         price = new []{100, 500, 1000,5000,10000, 20000, 40000};
 	    isBuy = PlayerPrefsX.GetBoolArray("Buy");
-        Debug.Log(isBuy.Length);
         button2.color = disableColor;
         CheckUnlock();
 	}
