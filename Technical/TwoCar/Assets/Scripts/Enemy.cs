@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour 
 {
     public GameObject disappear;
-    public GameObject explorer;
     public SpriteRenderer image;
     public float speed;
     public bool isBlinky = false;

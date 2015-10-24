@@ -23,10 +23,8 @@ public class Car : MonoBehaviour {
 	{
 	    transform.position = start.transform.position;
         image = gameObject.GetComponent<SpriteRenderer>();
-
 	}
 	
-	// Update is called once per frame
 	void Update () 
     {
         if (Mathf.Abs(transform.rotation.eulerAngles.z - (360.0f + _rotationTarget) % 360.0f) <= 5.0f)
@@ -63,7 +61,6 @@ public class Car : MonoBehaviour {
 
     void Rotation(float rotationTarget)
     {
-        
         Quaternion target = Quaternion.Euler(0, 0, rotationTarget);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, target, speedRotation);
     }
@@ -100,7 +97,7 @@ public class Car : MonoBehaviour {
         if (other.tag == "Fuel")
         {
             PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().disappear, other.transform.position);
-            GameManager.Instance.AddScore();
+            ScoreManager.Instance.AddGold();
             PoolObject.DespawnObject("Enemy",other.gameObject);
             AudioManager.Instance.Ting(transform.position);
         }

@@ -2,23 +2,12 @@
 using System.Collections;
 using PathologicalGames;
 
-public class PoolObject : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+public class PoolObject : MonoBehaviour
+{
     public static Transform SpawnObject(string poolName, GameObject obj, Vector3 pos)
     {
         SpawnPool pool = PoolManager.Pools[poolName];
         Transform gameObj = pool.Spawn(obj, pos, Quaternion.identity);
-        //Enemy enemy = gameObj.GetComponent<Enemy>();
         return gameObj;
     }
 

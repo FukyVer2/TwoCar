@@ -14,7 +14,6 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject garage;
 
     public int highScore;
-    public int score = 0;
     public Text textScore;
     public Text textBestScore;
     public Text playScore;
@@ -27,13 +26,14 @@ public class GameManager : MonoSingleton<GameManager>
 
     public bool isPause = false;  // Pause game
 
-    public Image background;
+    public SpriteRenderer background;
     public Color randColor;
     public Color previousBackgroundColor;
     public float t = 0; // time to change backgroudn color.
 
     public float dieDelay = 0;
     public bool isDie = false;
+    public bool isPlay = false;
 
     public Text timer;
     public float countDown = 3;
@@ -53,7 +53,6 @@ public class GameManager : MonoSingleton<GameManager>
 	{
 	    highScore = PlayerPrefs.GetInt("Best Score");
         previousBackgroundColor = background.color;
-        Debug.Log(randColor);
 	    StartScene();
 	}
 	
@@ -73,8 +72,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameOver()
     {
+        isPlay = false;
         AudioManager.Instance.StopBackground();
-        BestScore();
+        ScoreManager.Instance.BestScore();
         over.SetActive(true);
         play.SetActive(false);
         start.SetActive(false);
@@ -86,6 +86,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void StartScene()
     {
+        isPlay = false;
         Unpause();
         PoolObject.DespawnAll("Enemy");
         PoolObject.DespawnAll("Effect");
@@ -101,10 +102,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void PlayScene()
     {
-        score = 0;
-        playScore.text = "Score: " + score;
+        ScoreManager.Instance.ShowGold();
+        isPlay = true;
+        ScoreManager.Instance.ResetScore();
+        playScore.text = "Distance: " + ScoreManager.Instance.score + "m";
         Reset();
-        //ClearListGameObject();
         PoolObject.DespawnAll("Enemy");
         PoolObject.DespawnAll("Effect");
         AudioManager.Instance.StopBackground();
@@ -120,40 +122,23 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void CarShop()
     {
+        ScoreManager.Instance.ShowGold();
+        Garage.Instance.CheckUnlock();
         garage.SetActive(true);
         start.SetActive(false);
         play.SetActive(false);
         over.SetActive(false);
         playObj.SetActive(false);
         pause.SetActive(false);
-    }
+    }   
 
-    public void AddScore()
+    public void ChangeBackground()
     {
-        score++;
-        if (score%50 == 0 && score !=0)
+        if (ScoreManager.Instance.score % 50 == 0 && ScoreManager.Instance.score != 0)
         {
             previousBackgroundColor = background.color;
-            Debug.Log("change color");
             RandomBackgroundColor();
         }
-        textScore.text = "Score: " + score;
-        playScore.text = "Score: " + score;
-    }
-
-    public void BestScore()
-    {
-        if (score > PlayerPrefs.GetInt("Best Score"))
-        {
-            PlayerPrefs.SetInt("Best Score", score);
-        }
-        textBestScore.text = "Best: " + PlayerPrefs.GetInt("Best Score");
-        PlayerPrefs.Save();
-    }
-
-    public int GetScore()
-    {
-        return score;
     }
 
     public void Reset()
@@ -295,5 +280,24 @@ public class GameManager : MonoSingleton<GameManager>
             audioButton.GetComponent<Image>().sprite = soundOn;
             music = true;
         }
+    }
+
+    public void ChangeSpeed()
+    {
+        enemyCount++;
+        if (enemyCount % 100 == 0 && enemyCount != 0)
+        {
+            if (velo > 0)
+            {
+                velo *= -0.5f;
+            }
+            else
+            {
+                velo *= -2;
+            }
+        }
+        speed += velo;
+        minDelay -= velo / 9;
+        maxDelay -= velo / 9;
     }
 }

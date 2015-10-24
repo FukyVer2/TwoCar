@@ -7,10 +7,6 @@ public class EnemySpawner : MonoBehaviour
     public float delay;
     public List<GameObject> obj;
     public GameObject parent;
- 
-	void Start ()
-	{
-	}
 	
 	void Update ()
     {
@@ -58,23 +54,7 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             SpawnEnemy();
-            GameManager.Instance.enemyCount++;
-            if (GameManager.Instance.enemyCount%100 == 0 && GameManager.Instance.enemyCount != 0)
-            {
-                if (GameManager.Instance.velo > 0)
-                {
-                    GameManager.Instance.velo *= -0.5f;
-                }
-                else
-                {
-                    GameManager.Instance.velo *= -2;
-                }
-                Debug.Log(GameManager.Instance.velo);
-            }
-            float velo = GameManager.Instance.velo;
-            GameManager.Instance.speed += velo;
-            GameManager.Instance.minDelay -= velo / 9;
-            GameManager.Instance.maxDelay -= velo / 9;
+            GameManager.Instance.ChangeSpeed();
             delay = Random.Range(GameManager.Instance.minDelay, GameManager.Instance.maxDelay);
         }
     }
