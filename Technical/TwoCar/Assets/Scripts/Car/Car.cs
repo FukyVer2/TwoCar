@@ -31,7 +31,7 @@ public class Car : MonoBehaviour {
         {
             _rotationTarget = 0;
         }
-	    if (!GameManager.Instance.isDie)
+	    if (!GameManager.Instance.isDie && !GameManager.Instance.isPause)
 	    {
             Move();
             Rotation(_rotationTarget);
@@ -108,6 +108,14 @@ public class Car : MonoBehaviour {
             GameManager.Instance.dieDelay = 1.25f;
             GameManager.Instance.isDie = true;
             ShakingCamera.Instance.Shake();
+        }
+        else if (other.tag == "Energy")
+        {
+            ScoreManager.Instance.AddDiamon(1);
+            PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().disappear, other.transform.position);
+            PoolObject.DespawnObject("Enemy",other.gameObject);
+            AudioManager.Instance.Ting(transform.position);
+            
         }
     }
 

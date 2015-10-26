@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,22 +7,35 @@ using UnityEngine.UI;
 
 public class Garage : MonoSingleton<Garage>
 {
-    public List<GameObject> car;
-    public List<GameObject> button;
-    public List<GameObject> buyCar;
-    public List<GameObject> unlock;
-    public List<Text> priceText; 
+    [System.Serializable]
+    public class BuyButton
+    {   
+        public Button activeCar;
+        public Image skinCar;
+        public Image Lock;
+        public Text priceText;
+        public Button buyButton;
+        public Text buttonText;
+        public bool isBuy;
+    }
+
+    public GameObject notification;
+    public List<SpriteRenderer> car;
+    public List<Image> button;
+    public List<BuyButton> listBuyButtons;
     public Image button1;
     public Image button2;
     public Color disableColor = new Color(1,1,1,0.5f);
     public bool[] isBuy;
     public int[] price;
     public int number = 0;
+    public int preIndex;
 
 	void Start ()
 	{
-        isBuy = new bool[unlock.Count];
-	    if (!PlayerPrefs.HasKey("Buy"))
+        isBuy = new bool[listBuyButtons.Count];
+        //PlayerPrefsX.SetBoolArray("Buy", isBuy);
+        if (!PlayerPrefs.HasKey("Buy"))
 	    {
 	        PlayerPrefsX.SetBoolArray("Buy", isBuy);
 	    }
@@ -30,19 +44,25 @@ public class Garage : MonoSingleton<Garage>
         button2.color = disableColor;
         CheckUnlock();
 	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-	    
-	}
 
     public void CheckUnlock()
     {
-        for (int i = 0; i < unlock.Count; i++)
+        for (int i = 0; i < listBuyButtons.Count; i++)
         {
-            unlock[i].SetActive(!isBuy[i]);
-            priceText[i].text = "" + price[i];
+            listBuyButtons[i].activeCar.enabled = isBuy[i];
+            listBuyButtons[i].Lock.enabled = !isBuy[i];
+            listBuyButtons[i].priceText.text = "" + price[i];
+            listBuyButtons[i].buyButton.enabled = !isBuy[i];
+            listBuyButtons[i].isBuy = isBuy[i];
+            if (!isBuy[i])
+            {
+                listBuyButtons[i].buttonText.text = "Buy";
+                
+            }
+            else
+            {
+                listBuyButtons[i].buttonText.text = "Owned";
+            }
         }
     }
 
@@ -60,23 +80,57 @@ public class Garage : MonoSingleton<Garage>
         button2.color = new Color(1, 1, 1, 1);
     }
 
-    public void ChangeCar(GameObject clickedButton)
+    public void ChangeCar(Button clickedButton)
     {
-        car[number].GetComponent<SpriteRenderer>().sprite = clickedButton.GetComponent<Image>().sprite;
-        button[number].GetComponent<Image>().sprite = clickedButton.GetComponent<Image>().sprite;
+        int index = -1;
+        for (int i = 0; i < listBuyButtons.Count; i++)
+        {
+            if (listBuyButtons[i].activeCar == clickedButton)
+            {
+                index = i;
+                break;
+            }
+        }
+        car[number].sprite = listBuyButtons[index].skinCar.sprite;
+        button[number].sprite = listBuyButtons[index].skinCar.sprite;
     }
 
-    public void Unlock(GameObject clickedButton)
+    public void Unlock()
     {
-        int index = unlock.IndexOf(clickedButton);
-        if (ScoreManager.Instance.gold >= price[index])
+        notification.SetActive(false);
+        listBuyButtons[preIndex].isBuy = true;
+        isBuy[preIndex] = true;
+        listBuyButtons[preIndex].Lock.enabled = false;
+        listBuyButtons[preIndex].activeCar.enabled = true;
+        listBuyButtons[preIndex].buttonText.text = "Owned";
+        listBuyButtons[preIndex].buyButton.enabled = false;
+        PlayerPrefsX.SetBoolArray("Buy", isBuy);
+        ScoreManager.Instance.gold -= price[preIndex];
+        ScoreManager.Instance.ShowGold();
+    }
+
+    public void Notify(Button clickedButton)
+    {
+        for (int i = 0; i < listBuyButtons.Count; i++)
         {
-            isBuy[index] = true;
-            clickedButton.SetActive(false);
-            ScoreManager.Instance.gold -= price[index];
-            PlayerPrefsX.SetBoolArray("Buy", isBuy);
-            PlayerPrefs.SetInt("Gold", ScoreManager.Instance.gold);
-            ScoreManager.Instance.ShowGold();
+            if (listBuyButtons[i].buyButton == clickedButton)
+            {
+                preIndex = i;
+                break;
+            }
         }
+        if (ScoreManager.Instance.gold >= price[preIndex])
+        {
+            notification.SetActive(true);
+        }
+        else
+        {
+            GameManager.Instance.ShowNotEnough();
+        }
+    }
+
+    public void CloseNotify()
+    {
+        notification.SetActive(false);
     }
 }

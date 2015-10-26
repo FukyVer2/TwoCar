@@ -18,8 +18,15 @@ public class EnemySpawner : MonoBehaviour
 
     GameObject RandomObject()
     {
-        int randEnemy = Random.Range(1, 10);
-        return obj[randEnemy%2];
+        int randEnemy = Random.Range(1, 99);
+        if (randEnemy%50 == 0)
+        {
+            return obj[2];
+        }
+        else
+        {
+            return obj[randEnemy%2];
+        }
     }
 
     Vector3 RandomPos()

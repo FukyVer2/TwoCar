@@ -14,11 +14,14 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject playObj;
     public GameObject garage;
     public GameObject continuePlay;
+    public GameObject buyGold;
+    public GameObject notEnough;
 
     public int highScore;
     public Text textScore;
     public Text textBestScore;
     public Text playScore;
+    public int buyBack;
 
     public float speed = 5;     // Value to spawn Enemy
     public float velo = 0.01f;
@@ -37,7 +40,7 @@ public class GameManager : MonoSingleton<GameManager>
     public bool isDie = false;
     public bool isPlay = false;
     public bool isContinue = true;
-    public float continueDelay = 3;
+    public float continueDelay = 2;
     public Image continueImage;
 
     public Text timer;
@@ -75,6 +78,20 @@ public class GameManager : MonoSingleton<GameManager>
 	    }
 	}
 
+    public void Reset()
+    {
+        buyBack = 1;
+        background.color = new Color(117f/255f, 170f/255f, 160f/255f, 1f);
+        previousBackgroundColor = new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
+        randColor = new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
+        velo = 0.02f;
+        speed = 4.5f;
+        minDelay = 0.65f;
+        maxDelay = 0.85f;
+        continueDelay = 2f;
+        ScoreManager.Instance.ShowGold();
+    }
+
     public void GameOver()
     {
         isPlay = false;
@@ -86,7 +103,8 @@ public class GameManager : MonoSingleton<GameManager>
         playObj.SetActive(false);
         pause.SetActive(false);
         garage.SetActive(false);
-
+        buyGold.SetActive(false);
+        garage.SetActive(false);
     }
 
     public void StartScene()
@@ -102,6 +120,7 @@ public class GameManager : MonoSingleton<GameManager>
         over.SetActive(false);
         playObj.SetActive(false);
         pause.SetActive(false);
+        buyGold.SetActive(false);
         garage.SetActive(false);
     }
 
@@ -121,21 +140,35 @@ public class GameManager : MonoSingleton<GameManager>
         start.SetActive(false);
         pause.SetActive(false);
         playObj.SetActive(true);
+        buyGold.SetActive(false);
         garage.SetActive(false);
-
     }
 
     public void CarShop()
     {
         ScoreManager.Instance.ShowGold();
-        Garage.Instance.CheckUnlock();
         garage.SetActive(true);
-        start.SetActive(false);
-        play.SetActive(false);
-        over.SetActive(false);
-        playObj.SetActive(false);
-        pause.SetActive(false);
-    }   
+    }
+
+
+
+    public void CloseShop()
+    {
+        garage.SetActive(false);
+    }
+
+    public void GoldShop()
+    {
+        ScoreManager.Instance.ShowGold();
+        buyGold.SetActive(true);
+        garage.SetActive(false);
+    }
+
+    public void CloseGoldShop()
+    {
+        buyGold.SetActive(false);
+        garage.SetActive(true);
+    }
 
     public void ChangeBackground()
     {
@@ -146,16 +179,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    public void Reset()
-    {
-        background.color = Color.white;
-        previousBackgroundColor = Color.white;
-        randColor = Color.white;
-        velo = 0.01f;
-        speed = 5;
-        minDelay = 0.6f;
-        maxDelay = 0.8f;
-    }
+   
 
     public void BackUp()
     {
@@ -205,7 +229,6 @@ public class GameManager : MonoSingleton<GameManager>
         {
             background.color = Color.Lerp(previousBackgroundColor, randColor, t);
             t += Time.deltaTime/2;
-            Debug.Log(background.color);
         }
         else
         {
@@ -317,20 +340,20 @@ public class GameManager : MonoSingleton<GameManager>
         if (isContinue && continueDelay > 0)
         {
             continueDelay -= Time.deltaTime;
-            continueImage.fillAmount += Time.deltaTime/3;
+            continueImage.fillAmount += Time.deltaTime/2;
         }
         else if (!isContinue)
         {
             isDie = false;
             StartCd();
-            continueDelay = 3f;
+            continueDelay = 2f;
             continueImage.fillAmount = 0;
             isContinue = true; 
         }
         else
         {
             isDie = false;
-            continueDelay = 3f;
+            continueDelay = 2f;
             continuePlay.SetActive(false);
             continueImage.fillAmount = 0;
             Unpause();
@@ -342,6 +365,28 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void ContinueButton()
     {
-        isContinue = false;
+        if (ScoreManager.Instance.diamond >= buyBack)
+        {
+            ScoreManager.Instance.ShowGold();
+            ScoreManager.Instance.AddDiamon(-buyBack);
+            buyBack +=2;
+            ScoreManager.Instance.ShowGold();
+            isContinue = false;
+        }
+    }
+
+    public void ShowNotEnough()
+    {
+        notEnough.SetActive(true);
+    }
+
+    public void HideNotEnough()
+    {
+        notEnough.SetActive(false);
+    }
+
+    public void Rate()
+    {
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.fuky.twocar");
     }
 }
