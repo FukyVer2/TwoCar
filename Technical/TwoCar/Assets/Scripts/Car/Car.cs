@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Car : MonoBehaviour {
     public float rotationLeft;
@@ -13,7 +12,6 @@ public class Car : MonoBehaviour {
     public bool isMove = false;
     public Vector3 targetPos;
     public GameObject start;
-    public GameManager gameManager;
     public SpriteRenderer image;
     public bool isBlinky = false;
     public float duration = 1.25f;
@@ -89,7 +87,7 @@ public class Car : MonoBehaviour {
             targetPos = left.transform.position;
             isLeft = true;
         }
-        AudioManager.Instance.TurnSound(transform.position);
+        //AudioManager.Instance.TurnSound(transform.position);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -99,12 +97,12 @@ public class Car : MonoBehaviour {
             PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().disappear, other.transform.position);
             ScoreManager.Instance.AddGold();
             PoolObject.DespawnObject("Enemy",other.gameObject);
-            AudioManager.Instance.Ting(transform.position);
+            //AudioManager.Instance.Ting(transform.position);
         }
         else if(other.tag == "Block")
         {
             isBlinky = true;
-            AudioManager.Instance.Crash(transform.position);
+            //AudioManager.Instance.Crash(transform.position);
             GameManager.Instance.dieDelay = 1.25f;
             GameManager.Instance.isDie = true;
             ShakingCamera.Instance.Shake();
@@ -114,7 +112,7 @@ public class Car : MonoBehaviour {
             ScoreManager.Instance.AddDiamon(1);
             PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().disappear, other.transform.position);
             PoolObject.DespawnObject("Enemy",other.gameObject);
-            AudioManager.Instance.Ting(transform.position);
+            //AudioManager.Instance.Ting(transform.position);
             
         }
     }

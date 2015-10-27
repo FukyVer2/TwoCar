@@ -5,19 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class BuyButton
+{
+    public Button activeCar;
+    public Image skinCar;
+    public Image Lock;
+    public Text priceText;
+    public Button buyButton;
+    public Text buttonText;
+    public bool isBuy;
+}
 public class Garage : MonoSingleton<Garage>
 {
-    [System.Serializable]
-    public class BuyButton
-    {   
-        public Button activeCar;
-        public Image skinCar;
-        public Image Lock;
-        public Text priceText;
-        public Button buyButton;
-        public Text buttonText;
-        public bool isBuy;
-    }
+    
 
     public GameObject notification;
     public List<SpriteRenderer> car;

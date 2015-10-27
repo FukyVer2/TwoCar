@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -27,6 +25,7 @@ public class GameManager : MonoSingleton<GameManager>
     public float velo = 0.01f;
     public float minDelay = 0.6f;
     public float maxDelay = 0.8f;
+    public int maxSpeed = 10;
     public int enemyCount = 0;
 
     public bool isPause = false;  // Pause game
@@ -53,15 +52,20 @@ public class GameManager : MonoSingleton<GameManager>
     public Sprite soundOff;
     public GameObject audioButton;
 
+
     private float _bkSpeed;
     private float _bkMinDelay;
     private float _bkMaxDelay;
+
+    public ScoreManager scoreManager;
+    public List<EnemySpawner> enemySpawner;
 
 	void Start ()
 	{
 	    highScore = PlayerPrefs.GetInt("Best Score");
         previousBackgroundColor = background.color;
 	    StartScene();
+        Reset();
 	}
 	
 	// Update is called once per frame
@@ -76,6 +80,14 @@ public class GameManager : MonoSingleton<GameManager>
 	    {
             Resume();
 	    }
+	    if (isPlay && !isPause)
+	    {
+            scoreManager.AddScore();
+	        foreach (var spawner in enemySpawner)
+	        {
+	            spawner.Spawn();
+	        }
+	    }
 	}
 
     public void Reset()
@@ -85,7 +97,7 @@ public class GameManager : MonoSingleton<GameManager>
         previousBackgroundColor = new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
         randColor = new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
         velo = 0.02f;
-        speed = 4.5f;
+        speed = 4f;
         minDelay = 0.65f;
         maxDelay = 0.85f;
         continueDelay = 2f;
@@ -95,7 +107,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
         isPlay = false;
-        AudioManager.Instance.StopBackground();
+        //AudioManager.Instance.StopBackground();
         ScoreManager.Instance.BestScore();
         over.SetActive(true);
         play.SetActive(false);
@@ -113,8 +125,8 @@ public class GameManager : MonoSingleton<GameManager>
         Unpause();
         PoolObject.DespawnAll("Enemy");
         PoolObject.DespawnAll("Effect");
-        AudioManager.Instance.StopBackground();
-        AudioManager.Instance.Background();
+        //.Instance.StopBackground();
+        //AudioManager.Instance.Background();
         start.SetActive(true);
         play.SetActive(false);
         over.SetActive(false);
@@ -133,8 +145,8 @@ public class GameManager : MonoSingleton<GameManager>
         Reset();
         PoolObject.DespawnAll("Enemy");
         PoolObject.DespawnAll("Effect");
-        AudioManager.Instance.StopBackground();
-        AudioManager.Instance.Background();
+        //AudioManager.Instance.StopBackground();
+        //AudioManager.Instance.Background();
         play.SetActive(true);
         over.SetActive(false);
         start.SetActive(false);
@@ -172,15 +184,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void ChangeBackground()
     {
-        if (ScoreManager.Instance.score % 50 == 0 && ScoreManager.Instance.score != 0)
-        {
             previousBackgroundColor = background.color;
             RandomBackgroundColor();
-        }
     }
 
    
-
     public void BackUp()
     {
         _bkSpeed = speed;
@@ -228,6 +236,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (background.color != randColor)
         {
             background.color = Color.Lerp(previousBackgroundColor, randColor, t);
+            Debug.Log("debug");
             t += Time.deltaTime/2;
         }
         else
@@ -298,38 +307,39 @@ public class GameManager : MonoSingleton<GameManager>
         countDown = 3;
     }
 
-    public void SoundControl()
-    {
-        if (music)
-        {
-            volume = 0;
-            AudioManager.Instance.Background();
-            audioButton.GetComponent<Image>().sprite = soundOff;
-            music = false;
-        }
-        else
-        {
-            volume = 1;
-            AudioManager.Instance.Background();
-            audioButton.GetComponent<Image>().sprite = soundOn;
-            music = true;
-        }
-    }
+    //public void SoundControl()
+    //{
+    //    if (music)
+    //    {
+    //        volume = 0;
+    //        AudioManager.Instance.Background();
+    //        audioButton.GetComponent<Image>().sprite = soundOff;
+    //        music = false;
+    //    }
+    //    else
+    //    {
+    //        volume = 1;
+    //        AudioManager.Instance.Background();
+    //        audioButton.GetComponent<Image>().sprite = soundOn;
+    //        music = true;
+    //    }
+    //}
 
     public void ChangeSpeed()
     {
         enemyCount++;
-        if (enemyCount % 100 == 0 && enemyCount != 0)
+        if (enemyCount % 130 == 0 && enemyCount != 0)
         {
             if (velo > 0)
             {
-                velo *= -0.5f;
+                velo *= -1/3f;
             }
             else
             {
-                velo *= -2;
+                velo *= -3f;
             }
         }
+        if(speed<maxSpeed || velo < 0)
         speed += velo;
         minDelay -= velo / 9;
         maxDelay -= velo / 9;

@@ -44,13 +44,13 @@ public class ScoreManager : MonoSingleton<ScoreManager>
         InitGoldShop();
     }
 
-    void Update()
-    {
-        if (GameManager.Instance.isPlay && !GameManager.Instance.isPause)
-        {
-            AddScore();            
-        }
-    }
+    //void Update()
+    //{
+    //    if (GameManager.Instance.isPlay && !GameManager.Instance.isPause)
+    //    {
+    //        AddScore();            
+    //    }
+    //}
 
     void InitGoldShop()
     {
@@ -76,7 +76,10 @@ public class ScoreManager : MonoSingleton<ScoreManager>
         {
             timeAdd = 1;
             score++;
-            GameManager.Instance.ChangeBackground();
+            if (score%50 == 0 && score != 0)
+            {
+                GameManager.Instance.ChangeBackground();
+            }
             overScore.text = "Distance: " + score + "m";
             playScore.text = "Distance: " + score + "m";
         }

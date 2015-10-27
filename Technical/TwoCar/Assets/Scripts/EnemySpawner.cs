@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
@@ -7,19 +6,20 @@ public class EnemySpawner : MonoBehaviour
     public float delay;
     public List<GameObject> obj;
     public GameObject parent;
+
 	
-	void Update ()
-    {
-	    if (!GameManager.Instance.isPause)
-	    {
-            Spawn();
-	    }
-	}
+	//void Update ()
+ //   {
+	//    if (!GameManager.Instance.isPause)
+	//    {
+ //           Spawn();
+	//    }
+	//}
 
     GameObject RandomObject()
     {
-        int randEnemy = Random.Range(1, 99);
-        if (randEnemy%50 == 0)
+        int randEnemy = Random.Range(1, 150);
+        if (randEnemy%86 == 0)
         {
             return obj[2];
         }
@@ -48,11 +48,10 @@ public class EnemySpawner : MonoBehaviour
         Vector3 pos = RandomPos();
         Transform instance = PoolObject.SpawnObject("Enemy", obj, pos);
         Enemy enemy = instance.GetComponent<Enemy>();
-        enemy.Reset();
         enemy.speed = GameManager.Instance.speed;
     }
 
-    void Spawn()
+    public void Spawn()
     {
         if (delay > 0)
         {

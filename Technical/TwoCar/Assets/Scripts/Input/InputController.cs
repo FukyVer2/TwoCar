@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 
 public class InputController : MonoBehaviour, IPointerDownHandler
@@ -9,6 +8,5 @@ public class InputController : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         car.Turn();
-        Vector3 pos = eventData.position;
     }
 }

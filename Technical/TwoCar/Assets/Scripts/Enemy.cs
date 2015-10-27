@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public GameObject disappear;
     public SpriteRenderer image;
-    public float speed;
+    public float speed = 5;
     public bool isBlinky = false;
     public float blinkyDuration = 1.25f;
     public int time = 0;
@@ -23,6 +23,10 @@ public class Enemy : MonoBehaviour
         }
         if (isBlinky)
         {
+#if UNITY_EDITOR
+            Debug.Log("blinky");
+#endif
+
             if (blinkyDuration > 0)
             {
                 Blinky();
@@ -36,7 +40,7 @@ public class Enemy : MonoBehaviour
                 time = 0;
             }
         }
-	}
+    }
 
     void Move()
     {
