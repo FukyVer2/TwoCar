@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     void Move()
     {
-        gameObject.transform.position += new Vector3(0, -speed) * Time.deltaTime; 
+        transform.position += new Vector3(0, -speed) * Time.deltaTime; 
     }
 
     void Blinky()

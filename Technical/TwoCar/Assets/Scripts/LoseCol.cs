@@ -9,8 +9,8 @@ public class LoseCol : MonoBehaviour
         {
             other.GetComponent<Enemy>().isBlinky = true;
             GameManager.Instance.dieDelay = 1.5f;
-            PoolObject.DespawnObject("Enemy", other.gameObject);
-            //GameManager.Instance.isDie = true;
+            //PoolObject.DespawnObject("Enemy", other.gameObject);
+            GameManager.Instance.isDie = true;
         }
         else if (other.tag == "Block")
         {

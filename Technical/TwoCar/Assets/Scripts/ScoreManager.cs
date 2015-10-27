@@ -38,6 +38,10 @@ public class ScoreManager : MonoSingleton<ScoreManager>
     {
         priceGold = new[] {500, 5000, 55000, 600000};
         valueDia = new[] {1, 9, 49, 99};
+        if (!PlayerPrefs.HasKey("Diamond"))
+        {
+            PlayerPrefs.SetInt("Diamond", 3);
+        }
         highScore = PlayerPrefs.GetInt("HighScore");
         gold = PlayerPrefs.GetInt("Gold");
         diamond = PlayerPrefs.GetInt("Diamond");

@@ -87,7 +87,6 @@ public class Car : MonoBehaviour {
             targetPos = left.transform.position;
             isLeft = true;
         }
-        //AudioManager.Instance.TurnSound(transform.position);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -98,11 +97,12 @@ public class Car : MonoBehaviour {
             ScoreManager.Instance.AddGold();
             PoolObject.DespawnObject("Enemy",other.gameObject);
             //AudioManager.Instance.Ting(transform.position);
+            AudioManager.Instance.PlaySound(SoundType.TING);
         }
         else if(other.tag == "Block")
         {
             isBlinky = true;
-            //AudioManager.Instance.Crash(transform.position);
+            AudioManager.Instance.PlaySound(SoundType.VIBRATE);
             GameManager.Instance.dieDelay = 1.25f;
             GameManager.Instance.isDie = true;
             ShakingCamera.Instance.Shake();
@@ -112,8 +112,7 @@ public class Car : MonoBehaviour {
             ScoreManager.Instance.AddDiamon(1);
             PoolObject.SpawnObject("Effect", other.GetComponent<Enemy>().disappear, other.transform.position);
             PoolObject.DespawnObject("Enemy",other.gameObject);
-            //AudioManager.Instance.Ting(transform.position);
-            
+            AudioManager.Instance.PlaySound(SoundType.TING);
         }
     }
 

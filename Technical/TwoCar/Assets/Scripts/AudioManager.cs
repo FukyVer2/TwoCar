@@ -9,21 +9,31 @@ public enum SoundType
     VIBRATE = 2,
     BACKGROUND =3
 }
-
+[System.Serializable]
+public class GameAudio
+{
+    public SoundType sound;
+    public AudioClip audioClip;
+}
 
 public class AudioManager : MonoSingleton<AudioManager>
 {
-    [System.Serializable]
-    public class GameAudio
-    {
-        public SoundType sound;
-        public AudioClip audioClip;
-    }
+    public bool isSoundGamePlay = true;
 
-    public List<GameAudio> listAudios; 
+    public List<GameAudio> listAudios;
+    private AudioSource audioSource;
 	void Start () {
-	    listAudios = new List<GameAudio>();
+
+	    audioSource = GetComponent<AudioSource>();
 	}
+
+    public void PlaySound(SoundType audioType)
+    {
+        if (isSoundGamePlay)
+        {
+            audioSource.PlayOneShot(listAudios[(int) audioType].audioClip);
+        }
+    }
 
     //public void Ting(Vector3 position)
     //{

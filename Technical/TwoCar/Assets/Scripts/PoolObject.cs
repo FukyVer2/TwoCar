@@ -10,6 +10,17 @@ public class PoolObject : MonoBehaviour
         Transform gameObj = pool.Spawn(obj, pos, Quaternion.identity);
         return gameObj;
     }
+    public static Transform SpawnEnemy(GameObject obj, Vector3 pos)
+    {
+        SpawnPool pool = PoolManager.Pools["Enemy"];
+        Transform gameObj = pool.Spawn(obj, pos, Quaternion.identity);
+
+        Enemy enemy = gameObj.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
+            enemy.speed = GameManager.Instance.speed;
+
+        return gameObj;
+    }
 
     public static void DespawnObject(string poolName, GameObject obj)
     {

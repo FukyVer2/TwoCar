@@ -14,6 +14,7 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject continuePlay;
     public GameObject buyGold;
     public GameObject notEnough;
+    public GameObject audioGameObject;
 
     public int highScore;
     public Text textScore;
@@ -50,7 +51,7 @@ public class GameManager : MonoSingleton<GameManager>
     public float volume = 1;
     public Sprite soundOn;
     public Sprite soundOff;
-    public GameObject audioButton;
+    public Image audioButton;
 
 
     private float _bkSpeed;
@@ -60,13 +61,23 @@ public class GameManager : MonoSingleton<GameManager>
     public ScoreManager scoreManager;
     public List<EnemySpawner> enemySpawner;
 
+    public Color startColor = new Color(11/255f,11/255f,11/255f,30/255f);
+
 	void Start ()
 	{
 	    highScore = PlayerPrefs.GetInt("Best Score");
         previousBackgroundColor = background.color;
 	    StartScene();
         Reset();
-	}
+        //foreach (var spawner in enemySpawner)
+        //{
+        //    spawner.SetDelay(minDelay, maxDelay);
+        //}
+	    for (int i = 0; i < enemySpawner.Count; i++)
+	    {
+	        enemySpawner[i].SetDelay(minDelay, maxDelay);
+	    }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -83,23 +94,29 @@ public class GameManager : MonoSingleton<GameManager>
 	    if (isPlay && !isPause)
 	    {
             scoreManager.AddScore();
-	        foreach (var spawner in enemySpawner)
-	        {
-	            spawner.Spawn();
-	        }
-	    }
+            //foreach (var spawner in enemySpawner)
+            //{
+            //    ChangeSpeed();
+            //    spawner.Spawn(minDelay, maxDelay);
+            //}
+            for (int i = 0; i < enemySpawner.Count; i++)
+            {
+                //enemySpawner[i].SetDelay(minDelay, maxDelay);
+                enemySpawner[i].Spawn(minDelay, maxDelay);
+            }
+        }
 	}
 
     public void Reset()
     {
         buyBack = 1;
-        background.color = new Color(117f/255f, 170f/255f, 160f/255f, 1f);
-        previousBackgroundColor = new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
-        randColor = new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
+        background.color =startColor; // new Color(117f/255f, 170f/255f, 160f/255f, 1f);
+        previousBackgroundColor = startColor;//new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
+        randColor = startColor;//new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
         velo = 0.02f;
         speed = 4f;
-        minDelay = 0.65f;
-        maxDelay = 0.85f;
+        minDelay = 0.7f;
+        maxDelay = 0.9f;
         continueDelay = 2f;
         ScoreManager.Instance.ShowGold();
     }
@@ -236,7 +253,6 @@ public class GameManager : MonoSingleton<GameManager>
         if (background.color != randColor)
         {
             background.color = Color.Lerp(previousBackgroundColor, randColor, t);
-            Debug.Log("debug");
             t += Time.deltaTime/2;
         }
         else
@@ -307,23 +323,25 @@ public class GameManager : MonoSingleton<GameManager>
         countDown = 3;
     }
 
-    //public void SoundControl()
-    //{
-    //    if (music)
-    //    {
-    //        volume = 0;
-    //        AudioManager.Instance.Background();
-    //        audioButton.GetComponent<Image>().sprite = soundOff;
-    //        music = false;
-    //    }
-    //    else
-    //    {
-    //        volume = 1;
-    //        AudioManager.Instance.Background();
-    //        audioButton.GetComponent<Image>().sprite = soundOn;
-    //        music = true;
-    //    }
-    //}
+    public void SoundControl()
+    {
+        if (music)
+        {
+            volume = 0;
+            audioButton.sprite = soundOff;
+            audioGameObject.SetActive(false);
+            music = false;
+            AudioManager.Instance.isSoundGamePlay = false;
+        }
+        else
+        {
+            volume = 1;
+            audioButton.sprite = soundOn;
+            audioGameObject.SetActive(true);
+            music = true;
+            AudioManager.Instance.isSoundGamePlay = true;
+        }
+    }
 
     public void ChangeSpeed()
     {
@@ -339,10 +357,12 @@ public class GameManager : MonoSingleton<GameManager>
                 velo *= -3f;
             }
         }
-        if(speed<maxSpeed || velo < 0)
-        speed += velo;
-        minDelay -= velo / 9;
-        maxDelay -= velo / 9;
+        if (speed < maxSpeed || velo < 0)
+        {
+            speed += velo;
+            minDelay -= velo/9;
+            maxDelay -= velo/9;
+        }
     }
 
     public void ContinuePlay()
