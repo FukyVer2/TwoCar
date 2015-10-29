@@ -152,10 +152,12 @@ public class GameManager : MonoSingleton<GameManager>
         pause.SetActive(false);
         buyGold.SetActive(false);
         garage.SetActive(false);
+        
     }
 
     public void PlayScene()
     {
+        MyApplycation.Instance.googleAnalytics.LogEvent("GamePlay", "PlayGame", "", (int)Time.fixedTime);
         ScoreManager.Instance.ShowGold();
         isPlay = true;
         ScoreManager.Instance.ResetScore();
