@@ -119,6 +119,7 @@ public class GameManager : MonoSingleton<GameManager>
         maxDelay = 0.9f;
         continueDelay = 2f;
         ScoreManager.Instance.ShowGold();
+		enemyCount = 0;
     }
 
     public void GameOver()
@@ -417,6 +418,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Rate()
     {
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.fuky.twocar");
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.fuky.cars");
     }
 }
