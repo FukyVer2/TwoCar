@@ -1,0 +1,949 @@
+fileFormatVersion: 2
+guid: d2431ddc143d7ab4caf16226b0e8e256
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 1
+    21300002: 10
+    21300004: 2
+    21300006: 3
+    21300008: 4
+    21300010: 5
+    21300012: 6
+    21300014: 7
+    21300016: 8
+    21300018: 9
+    21300020: BuyButton
+    21300022: Car1a1
+    21300024: Car1b1
+    21300026: Car1c1
+    21300028: Car2a1
+    21300030: Car2b1
+    21300032: Car2c1
+    21300034: Car3a1
+    21300036: Car3b1
+    21300038: Car3c1
+    21300040: Car4a1
+    21300042: Car4b1
+    21300044: Car5a1
+    21300046: Circle1
+    21300048: Circle2
+    21300050: Coin1
+    21300052: FaceBookButton
+    21300054: GameOver
+    21300056: HighScore
+    21300058: HomeButton
+    21300060: Jewelry1
+    21300062: Line
+    21300064: Lock
+    21300066: Mute
+    21300068: OptionBG
+    21300070: PauseButton
+    21300072: Plate1
+    21300074: Play
+    21300076: PlayBG
+    21300078: PlayButton
+    21300080: PlusButton
+    21300082: Price
+    21300084: RateButton
+    21300086: RePlay
+    21300088: RePlayBG
+    21300090: Score
+    21300092: ScoreBackground
+    21300094: Shop1
+    21300096: ShopButton
+    21300098: ShowRoom1
+    21300100: ShowRoom3
+    21300102: SoundButton
+    21300104: Square1
+    21300106: Street1
+    21300108: Street2
+    21300110: Street3
+    21300112: Street4
+    21300114: WoodenBox1
+    21300116: XButton
+    21300118: pixe7 - Copy (2)
+    21300120: pixe7 - Copy - Copy
+    21300122: pixe7 - Copy
+    21300124: pixe7
+    21300126: pixel - Copy (2)
+    21300128: pixel - Copy - Copy
+    21300130: pixel - Copy
+    21300132: pixel
+    21300134: pixel2 - Copy (2)
+    21300136: pixel2 - Copy - Copy
+    21300138: pixel2 - Copy
+    21300140: pixel2
+    21300142: pixel3 - Copy (2)
+    21300144: pixel3 - Copy - Copy
+    21300146: pixel3 - Copy
+    21300148: pixel3
+    21300150: pixel4 - Copy (2)
+    21300152: pixel4 - Copy - Copy
+    21300154: pixel4 - Copy
+    21300156: pixel4
+    21300158: pixel5 - Copy (2)
+    21300160: pixel5 - Copy - Copy
+    21300162: road_xanh
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: 1
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 61
+        width: 74
+        height: 63
+      alignment: 9
+      pivot: {x: .472972959, y: .90476191}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 10
+      rect:
+        serializedVersion: 2
+        x: 1442
+        y: 32
+        width: 78
+        height: 92
+      alignment: 9
+      pivot: {x: .487179488, y: .369565219}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 2
+      rect:
+        serializedVersion: 2
+        x: 1522
+        y: 44
+        width: 78
+        height: 80
+      alignment: 9
+      pivot: {x: .487179488, y: .699999988}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 3
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 49
+        width: 85
+        height: 106
+      alignment: 9
+      pivot: {x: .482352942, y: .547169805}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 4
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 49
+        width: 95
+        height: 116
+      alignment: 9
+      pivot: {x: .49473685, y: .491379321}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 5
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 157
+        width: 100
+        height: 115
+      alignment: 9
+      pivot: {x: .479999989, y: .469565213}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 6
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 63
+        width: 98
+        height: 111
+      alignment: 9
+      pivot: {x: .479591846, y: .45045045}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 7
+      rect:
+        serializedVersion: 2
+        x: 1780
+        y: 55
+        width: 89
+        height: 100
+      alignment: 9
+      pivot: {x: .460674167, y: .389999986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 8
+      rect:
+        serializedVersion: 2
+        x: 1780
+        y: 55
+        width: 89
+        height: 100
+      alignment: 9
+      pivot: {x: .460674167, y: .389999986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 9
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 176
+        width: 84
+        height: 96
+      alignment: 9
+      pivot: {x: .476190478, y: .375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BuyButton
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 16
+        width: 70
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car1a1
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 373
+        width: 120
+        height: 193
+      alignment: 9
+      pivot: {x: .5, y: .507772028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car1b1
+      rect:
+        serializedVersion: 2
+        x: 1559
+        y: 373
+        width: 120
+        height: 193
+      alignment: 9
+      pivot: {x: .5, y: .507772028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car1c1
+      rect:
+        serializedVersion: 2
+        x: 1442
+        y: 178
+        width: 120
+        height: 193
+      alignment: 9
+      pivot: {x: .5, y: .507772028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car2a1
+      rect:
+        serializedVersion: 2
+        x: 1564
+        y: 178
+        width: 115
+        height: 193
+      alignment: 9
+      pivot: {x: .478260875, y: .507772028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car2b1
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 176
+        width: 115
+        height: 193
+      alignment: 9
+      pivot: {x: .478260875, y: .507772028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car2c1
+      rect:
+        serializedVersion: 2
+        x: 1879
+        y: 676
+        width: 115
+        height: 193
+      alignment: 9
+      pivot: {x: .478260875, y: .507772028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car3a1
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 371
+        width: 105
+        height: 195
+      alignment: 9
+      pivot: {x: .476190478, y: .502564132}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car3b1
+      rect:
+        serializedVersion: 2
+        x: 1772
+        y: 665
+        width: 105
+        height: 195
+      alignment: 9
+      pivot: {x: .476190478, y: .502564132}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car3c1
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 468
+        width: 105
+        height: 195
+      alignment: 9
+      pivot: {x: .476190478, y: .502564132}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car4a1
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 274
+        width: 111
+        height: 192
+      alignment: 9
+      pivot: {x: .486486495, y: .510416687}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car4b1
+      rect:
+        serializedVersion: 2
+        x: 1911
+        y: 287
+        width: 111
+        height: 192
+      alignment: 9
+      pivot: {x: .486486495, y: .510416687}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car5a1
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 481
+        width: 99
+        height: 193
+      alignment: 9
+      pivot: {x: .474747479, y: .507772028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Circle1
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 871
+        width: 200
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Circle2
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 12
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Coin1
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 12
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FaceBookButton
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 2
+        width: 50
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GameOver
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 10
+        width: 400
+        height: 155
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HighScore
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 568
+        width: 300
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HomeButton
+      rect:
+        serializedVersion: 2
+        x: 1654
+        y: 9
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jewelry1
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 544
+        width: 50
+        height: 53
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Line
+      rect:
+        serializedVersion: 2
+        x: 2010
+        y: 1042
+        width: 12
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Lock
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 112
+        width: 205
+        height: 233
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Mute
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 124
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: OptionBG
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 862
+        width: 400
+        height: 212
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseButton
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 12
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Plate1
+      rect:
+        serializedVersion: 2
+        x: 1442
+        y: 126
+        width: 236
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Play
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 692
+        width: 300
+        height: 168
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayBG
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 167
+        width: 600
+        height: 430
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayButton
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 9
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlusButton
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 11
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Price
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 14
+        width: 100
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RateButton
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 20
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RePlay
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 597
+        width: 262
+        height: 250
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RePlayBG
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 540
+        width: 500
+        height: 307
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Score
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 64
+        width: 200
+        height: 46
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ScoreBackground
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 620
+        width: 300
+        height: 70
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Shop1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 849
+        width: 700
+        height: 225
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShopButton
+      rect:
+        serializedVersion: 2
+        x: 1756
+        y: 3
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShowRoom1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 599
+        width: 700
+        height: 475
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShowRoom3
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 347
+        width: 200
+        height: 248
+      alignment: 9
+      pivot: {x: .5, y: .491935492}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SoundButton
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 72
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Square1
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 49
+        width: 100
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Street1
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 5
+        width: 300
+        height: 533
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Street2
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 95
+        width: 2
+        height: 500
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Street3
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 95
+        width: 5
+        height: 500
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Street4
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 95
+        width: 14
+        height: 500
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: WoodenBox1
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 3
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: XButton
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 6
+        width: 50
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixe7 - Copy (2)
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 540
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixe7 - Copy - Copy
+      rect:
+        serializedVersion: 2
+        x: 1780
+        y: 173
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixe7 - Copy
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 363
+        width: 3
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixe7
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 540
+        width: 3
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel - Copy (2)
+      rect:
+        serializedVersion: 2
+        x: 1895
+        y: 476
+        width: 1
+        height: 3
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel - Copy - Copy
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 540
+        width: 1
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel - Copy
+      rect:
+        serializedVersion: 2
+        x: 1996
+        y: 868
+        width: 4
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 540
+        width: 4
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel2 - Copy (2)
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 849
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel2 - Copy - Copy
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 866
+        width: 4
+        height: 3
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel2 - Copy
+      rect:
+        serializedVersion: 2
+        x: 1795
+        y: 462
+        width: 1
+        height: 4
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel2
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 49
+        width: 2
+        height: 4
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel3 - Copy (2)
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 855
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel3 - Copy - Copy
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 106
+        width: 3
+        height: 4
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel3 - Copy
+      rect:
+        serializedVersion: 2
+        x: 1879
+        y: 669
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel3
+      rect:
+        serializedVersion: 2
+        x: 1772
+        y: 658
+        width: 2
+        height: 5
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel4 - Copy (2)
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 3
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel4 - Copy - Copy
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 366
+        width: 3
+        height: 5
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel4 - Copy
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 465
+        width: 5
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel4
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 540
+        width: 5
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel5 - Copy (2)
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 49
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pixel5 - Copy - Copy
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 592
+        width: 5
+        height: 3
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: road_xanh
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 4
+        width: 300
+        height: 534
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
