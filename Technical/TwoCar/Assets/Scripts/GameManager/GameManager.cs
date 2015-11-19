@@ -125,6 +125,9 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
         isPlay = false;
+//#if UNITY_ANDROID
+//        LeaderBoard.instance.ReportScore(ScoreManager.Instance.score);
+//#endif
         //AudioManager.Instance.StopBackground();
         ScoreManager.Instance.BestScore();
         over.SetActive(true);
