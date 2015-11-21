@@ -28,7 +28,6 @@ namespace GooglePlayGames.Native
     using System.Collections.Generic;
     using GooglePlayGames.BasicApi.Events;
     using GooglePlayGames.BasicApi.Quests;
-    using C = GooglePlayGames.Native.Cwrapper.InternalHooks;
     using Types = GooglePlayGames.Native.Cwrapper.Types;
     using Status = GooglePlayGames.Native.Cwrapper.CommonErrorStatus;
     using UnityEngine;
@@ -68,6 +67,8 @@ namespace GooglePlayGames.Native
         private volatile bool mSilentAuthFailed = false;
         private volatile bool friendsLoading = false;
 
+        private string rationale;
+
         private int webclientWarningFreq = 100000;
         private int noWebClientIdWarningCount = 0;
 
@@ -77,6 +78,7 @@ namespace GooglePlayGames.Native
             PlayGamesHelperObject.CreateObject();
             this.mConfiguration = Misc.CheckNotNull(configuration);
             this.clientImpl = clientImpl;
+            this.rationale = configuration.PermissionRationale;
         }
 
         private GameServices GameServices()
@@ -208,7 +210,7 @@ namespace GooglePlayGames.Native
                         }
 
                         mAuthState = AuthState.SilentPending;
-                        mTokenClient = clientImpl.CreateTokenClient();
+                        mTokenClient = clientImpl.CreateTokenClient(false);
                     }
                 }
             }
@@ -261,7 +263,7 @@ namespace GooglePlayGames.Native
                 }
                 return null;
             }
-
+            mTokenClient.SetRationale(rationale);
             return mTokenClient.GetEmail();
         }
 
@@ -286,7 +288,7 @@ namespace GooglePlayGames.Native
                 }
                 return null;
             }
-
+            mTokenClient.SetRationale(rationale);
             return mTokenClient.GetAccessToken();
         }
 
@@ -313,6 +315,7 @@ namespace GooglePlayGames.Native
                 }
                 return null;
             }
+            mTokenClient.SetRationale(rationale);
             return mTokenClient.GetIdToken(GameInfo.WebClientId);
         }
 
@@ -343,9 +346,11 @@ namespace GooglePlayGames.Native
                         mFriends = players;
                          callback(true);
                     }
-                    else {
-                        mFriends = null;
+                    else
+                    {
+                        mFriends = new List<Player>();
                         Logger.e("Got " + status + " loading friends");
+                        callback(false);
                     }
                 });
         }
@@ -358,7 +363,7 @@ namespace GooglePlayGames.Native
                 friendsLoading = true;
                 LoadFriends((ok) =>
                     {
-                        Logger.d("loading: " + ok);
+                        Logger.d("loading: " + ok + " mFriends = " + mFriends);
                         friendsLoading = false;
                     });
             }
@@ -547,6 +552,7 @@ namespace GooglePlayGames.Native
                 mFriends = null;
                 mAchievements = null;
                 mAuthState = AuthState.Unauthenticated;
+                mTokenClient = clientImpl.CreateTokenClient(true);
                 mAuthGeneration++;
             }
         }
@@ -599,6 +605,11 @@ namespace GooglePlayGames.Native
             }
 
             return mUser.AvatarURL;
+        }
+
+        public void GetPlayerStats(Action<CommonStatusCodes, PlayGamesLocalUser.PlayerStats> callback)
+        {
+            clientImpl.GetPlayerStats(GetApiClient(), callback);
         }
 
         ///<summary></summary>
@@ -1013,6 +1024,19 @@ namespace GooglePlayGames.Native
                 return mTokenClient.GetAccessToken();
             }
             return null;
+        }
+
+        public IntPtr GetApiClient()
+        {
+#if UNITY_ANDROID
+            IntPtr ptr =
+                Cwrapper.InternalHooks.InternalHooks_GetApiClient(mServices.AsHandle());
+
+            return  ptr;
+#else
+            Debug.Log("GoogleAPIClient is not available on this platform");
+            return IntPtr.Zero;
+#endif
         }
     }
 }

@@ -144,9 +144,11 @@ namespace GooglePlayGames.Native
                 // current room.
                 mCurrentSession = newRoom;
 
+                mCurrentSession.ShowingUI = true;
                 mRealtimeManager.ShowPlayerSelectUI(minOpponents, maxOppponents, true,
                     response =>
                     {
+                        mCurrentSession.ShowingUI = false;
                         if (response.Status() != Status.UIStatus.VALID)
                         {
                             Logger.d("User did not complete invitation screen.");
@@ -188,6 +190,29 @@ namespace GooglePlayGames.Native
                 mCurrentSession.ShowWaitingRoomUI();
             }
         }
+            
+        public void GetAllInvitations(Action<Invitation[]> callback)
+        {
+            mRealtimeManager.FetchInvitations((response) =>
+                {
+                    if (!response.RequestSucceeded())
+                    {
+                        Logger.e("Couldn't load invitations.");
+                        callback(new Invitation[0]);
+                        return;
+                    }
+
+                    List<Invitation> invites = new List<Invitation>();
+                    foreach (var invitation in response.Invitations())
+                    {
+                        using (invitation)
+                        {
+                            invites.Add(invitation.AsInvitation());
+                        }
+                    }
+                    callback(invites.ToArray());
+                });
+        }
 
         public void AcceptFromInbox(RealTimeMultiplayerListener listener)
         {
@@ -205,9 +230,11 @@ namespace GooglePlayGames.Native
                 // The user accepted an invitation from the inbox, this is now the current room.
                 mCurrentSession = newRoom;
 
+                mCurrentSession.ShowingUI = true;
                 mRealtimeManager.ShowRoomInboxUI(
                     response =>
                     {
+                        mCurrentSession.ShowingUI = false;
                         if (response.ResponseStatus() != Status.UIStatus.VALID)
                         {
                             Logger.d("User did not complete invitation screen.");
@@ -231,6 +258,7 @@ namespace GooglePlayGames.Native
                                         using (invitation)
                                         {
                                             newRoom.HandleRoomResponse(acceptResponse);
+                                            newRoom.SetInvitation(invitation.AsInvitation());
                                         }
                                     }));
                         }
@@ -289,6 +317,11 @@ namespace GooglePlayGames.Native
                         newRoom.LeaveRoom();
                     });
             }
+        }
+
+        public Invitation GetInvitation()
+        {
+            return mCurrentSession.GetInvitation();
         }
 
         public void LeaveRoom()
@@ -418,6 +451,10 @@ namespace GooglePlayGames.Native
             private volatile State mState;
             private volatile bool mStillPreRoomCreation;
 
+            Invitation mInvitation;
+
+            private volatile bool mShowingUI;
+
             private uint mMinPlayersToStart;
 
             internal RoomSession(RealtimeManager manager, RealTimeMultiplayerListener listener)
@@ -427,6 +464,18 @@ namespace GooglePlayGames.Native
 
                 EnterState(new BeforeRoomCreateStartedState(this));
                 mStillPreRoomCreation = true;
+            }
+
+            internal bool ShowingUI
+            {
+                get
+                {
+                    return mShowingUI;
+                }
+                set
+                {
+                    mShowingUI = value;
+                }
             }
 
             internal uint MinPlayersToStart
@@ -456,6 +505,16 @@ namespace GooglePlayGames.Native
                 return mCurrentPlayerId;
             }
 
+            public void SetInvitation(Invitation invitation)
+            {
+                mInvitation = invitation;
+            }
+
+            public Invitation GetInvitation()
+            {
+                return mInvitation;
+            }
+
             internal OnGameThreadForwardingListener OnGameThreadListener()
             {
                 return mListener;
@@ -479,10 +538,18 @@ namespace GooglePlayGames.Native
 
             internal void LeaveRoom()
             {
-                lock (mLifecycleLock)
+                if (!ShowingUI)
                 {
-                    mState.LeaveRoom();
+                    lock (mLifecycleLock)
+                    {
+                        mState.LeaveRoom();
+                    }
                 }
+                else
+                {
+                    Logger.d("Not leaving room since showing UI");
+                }
+                    
             }
 
             internal void ShowWaitingRoomUI()
@@ -545,6 +612,11 @@ namespace GooglePlayGames.Native
                 }
             }
 
+            /// <summary>
+            /// Handles the room response.
+            /// </summary>
+            /// <param name="response">Response.</param>
+            /// <param name="invitation">Invitation if accepting an invitation, this is stored in the session, otherwise null</param>
             internal void HandleRoomResponse(RealtimeManager.RealTimeRoomResponse response)
             {
                 lock (mLifecycleLock)
@@ -1079,8 +1151,10 @@ namespace GooglePlayGames.Native
 
             internal override void ShowWaitingRoomUI(uint minimumParticipantsBeforeStarting)
             {
+                mSession.ShowingUI = true;
                 mSession.Manager().ShowWaitingRoomUI(mRoom, minimumParticipantsBeforeStarting, response =>
                     {
+                        mSession.ShowingUI = false;
                         Logger.d("ShowWaitingRoomUI Response: " + response.ResponseStatus());
                         if(response.ResponseStatus() == Status.UIStatus.VALID) {
                             Logger.d("Connecting state ShowWaitingRoomUI: room pcount:" + response.Room().ParticipantCount() +

@@ -61,7 +61,7 @@ public class GameManager : MonoSingleton<GameManager>
     public ScoreManager scoreManager;
     public List<EnemySpawner> enemySpawner;
 
-    public Color startColor = new Color(11/255f,11/255f,11/255f,30/255f);
+    public Color startColor = Color.white; //new Color(11/255f,11/255f,11/255f,30/255f);
 
 	void Start ()
 	{
@@ -110,9 +110,9 @@ public class GameManager : MonoSingleton<GameManager>
     public void Reset()
     {
         buyBack = 1;
-        background.color =startColor; // new Color(117f/255f, 170f/255f, 160f/255f, 1f);
-        previousBackgroundColor = startColor;//new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
-        randColor = startColor;//new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
+        background.color = Color.white; // new Color(117f/255f, 170f/255f, 160f/255f, 1f);
+        previousBackgroundColor = Color.white;//new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
+        randColor = Color.white;//new Color(117f / 255f, 170f / 255f, 160f / 255f, 1f);
         velo = 0.02f;
         speed = 4f;
         minDelay = 0.7f;
@@ -125,9 +125,10 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
         isPlay = false;
-//#if UNITY_ANDROID
-//        LeaderBoard.instance.ReportScore(ScoreManager.Instance.score);
-//#endif
+#if UNITY_ANDROID
+        Lead.instance.ReportScore(ScoreManager.Instance.score);
+        Lead.instance.GetRank();
+#endif
         //AudioManager.Instance.StopBackground();
         ScoreManager.Instance.BestScore();
         over.SetActive(true);
@@ -247,10 +248,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void RandomBackgroundColor()
     {
-        float red =(float)Random.Range(40, 210) / 255;
+        float red = (float)Random.Range(40, 210) / 255;
         float green = (float)Random.Range(40, 210) / 255;
         float blue = (float)Random.Range(40, 210) / 255;
-        randColor = new Color(red,green,blue,1f);
+        randColor = new Color(red, green, blue, 1f);
         Debug.Log(randColor);
     }
 

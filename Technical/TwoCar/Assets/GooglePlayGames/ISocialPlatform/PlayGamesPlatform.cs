@@ -216,6 +216,11 @@ namespace GooglePlayGames
             }
         }
 
+        public IntPtr GetApiClient()
+        {
+            return mClient.GetApiClient();
+        }
+
         /// <summary>
         /// Activates the Play Games platform as the implementation of Social.Active.
         /// After calling this method, you can call methods on Social.Active. For
@@ -331,6 +336,7 @@ namespace GooglePlayGames
             {
                 mClient.SignOut();
             }
+            mLocalUser = new PlayGamesLocalUser(this);
         }
 
         /// <summary>
@@ -413,6 +419,20 @@ namespace GooglePlayGames
             }
 
             return null;
+        }
+
+        public void GetPlayerStats(Action<CommonStatusCodes, PlayGamesLocalUser.PlayerStats> callback)
+        {
+            if (mClient != null && mClient.IsAuthenticated())
+            {
+                mClient.GetPlayerStats(callback);
+            }
+            else
+            {
+                Logger.e("GetPlayerStats can only be called after authentication.");
+
+                callback(CommonStatusCodes.SignInRequired, null);
+            }
         }
 
         /// <summary>
@@ -562,7 +582,8 @@ namespace GooglePlayGames
                 int numSteps = targetSteps - curSteps;
                 Logger.d("Target steps: " + targetSteps + ", cur steps:" + curSteps);
                 Logger.d("Steps to increment: " + numSteps);
-                if (numSteps > 0)
+                // handle incremental achievements with 0 steps
+                if (numSteps >= 0)
                 {
                     mClient.IncrementAchievement(achievementID, numSteps, callback);
                 }

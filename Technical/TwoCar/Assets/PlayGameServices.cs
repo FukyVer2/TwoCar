@@ -28,7 +28,6 @@ public static class PlayGameServices
         public const string achievement_score4 = "CgkIopiSk-sYEAIQBQ"; // <GPGSID>
         public const string achievement_score5 = "CgkIopiSk-sYEAIQBg"; // <GPGSID>
         public const string achievement_score = "CgkIopiSk-sYEAIQAg"; // <GPGSID>
-        public const string package_name = "com.Fuky.Cars"; // <GPGSID>
         public const string leaderboard_highscore = "CgkIopiSk-sYEAIQAQ"; // <GPGSID>
         public const string achievement_score2 = "CgkIopiSk-sYEAIQAw"; // <GPGSID>
 
