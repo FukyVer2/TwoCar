@@ -77,6 +77,7 @@ public class GameManager : MonoSingleton<GameManager>
 	    {
 	        enemySpawner[i].SetDelay(minDelay, maxDelay);
 	    }
+        ChartboostAndroid.Instance.RequestInterstitial(ChartboostSDK.CBLocation.Default);
     }
 	
 	// Update is called once per frame
@@ -127,6 +128,7 @@ public class GameManager : MonoSingleton<GameManager>
 #if UNITY_ANDROID
         Lead.instance.ReportScore(ScoreManager.Instance.score);
         Lead.instance.GetRank();
+        Invoke("ShowAdmob", 0.2f);
 #endif
         isPlay = false;
         //AudioManager.Instance.StopBackground();
@@ -139,6 +141,12 @@ public class GameManager : MonoSingleton<GameManager>
         garage.SetActive(false);
         buyGold.SetActive(false);
         garage.SetActive(false);
+
+    }
+
+    public void ShowAdmob()
+    {
+        ChartboostAndroid.Instance.ShowInterstitial(ChartboostSDK.CBLocation.Default);
     }
 
     public void StartScene()
