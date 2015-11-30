@@ -82,17 +82,6 @@ public class LeaderBoard : MonoBehaviour
 
     public void GetPlayerRank()
     {
-        //PlayGamesPlatform.Instance.LoadScores(LEADERBOARD_SCORE, LeaderboardStart.PlayerCentered,
-        //    10, LeaderboardCollection.Public, LeaderboardTimeSpan.Weekly, data =>
-        //    {
-        //        if (data.Valid)
-        //        {
-        //            count.text = data.ApproximateCount.ToString();
-        //            id.text = data.Id;
-        //            rank.text = data.PlayerScore.rank.ToString();
-        //            value.text = data.PlayerScore.value.ToString();
-        //        }
-        //    });
         PlayGamesPlatform.Instance.LoadScores(LEADERBOARD_SCORE, scores =>
         {
             if (scores != null)

@@ -26,7 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
     public float velo = 0.01f;
     public float minDelay = 0.6f;
     public float maxDelay = 0.8f;
-    public int maxSpeed = 10;
+    public int maxSpeed = 9;
     public int enemyCount = 0;
 
     public bool isPause = false;  // Pause game
@@ -125,10 +125,6 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
         isPlay = false;
-#if UNITY_ANDROID
-        Lead.instance.ReportScore(ScoreManager.Instance.score);
-        Lead.instance.GetRank();
-#endif
         //AudioManager.Instance.StopBackground();
         ScoreManager.Instance.BestScore();
         over.SetActive(true);
@@ -282,6 +278,10 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
+#if UNITY_ANDROID
+            Lead.instance.ReportScore(ScoreManager.Instance.score);
+            Lead.instance.GetRank();
+#endif
             continuePlay.SetActive(true);
             ContinuePlay();
         }
@@ -353,7 +353,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void ChangeSpeed()
     {
         enemyCount++;
-        if (enemyCount % 130 == 0 && enemyCount != 0)
+        if (enemyCount % 100 == 0 && enemyCount != 0)
         {
             if (velo > 0)
             {

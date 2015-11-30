@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         if (isBlinky)
         {
 #if UNITY_EDITOR
-            Debug.Log("blinky");
+            //Debug.Log("blinky");
 #endif
 
             if (blinkyDuration > 0)

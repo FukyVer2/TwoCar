@@ -80,38 +80,38 @@ public class Lead : MonoBehaviour
     //    }
     //}
 
-    public Action<string> cao = a=> { string c = a; };
+    //public Action<string> cao = a=> { string c = a; };
 
-    public void sang(string _quang)
-    {
-        Debug.Log(_quang + "1");
-    }
+    //public void sang(string _quang)
+    //{
+    //    Debug.Log(_quang + "1");
+    //}
 
-    public void quang(string _quang)
-    {
-        Debug.Log(_quang + "2");
-    }
+    //public void quang(string _quang)
+    //{
+    //    Debug.Log(_quang + "2");
+    //}
 
-    [ContextMenu("test action")]
-    public void cao1()
-    {
-        int a = UnityEngine.Random.Range(0, 100);
-        if (a%2 == 0)
-            cao = quang;
-        else
-        {
-            cao = sang;
-        }
-        cao("Blala");
-        sang1(1, quang);
-        sang1(1, a1 => { Debug.Log(a1 + "23"); });
-    }
+    //[ContextMenu("test action")]
+    //public void cao1()
+    //{
+    //    int a = UnityEngine.Random.Range(0, 100);
+    //    if (a%2 == 0)
+    //        cao = quang;
+    //    else
+    //    {
+    //        cao = sang;
+    //    }
+    //    cao("Blala");
+    //    sang1(1, quang);
+    //    sang1(1, a1 => { Debug.Log(a1 + "23"); });
+    //}
 
-    public void sang1(int b, Action<string> _xyz )
-    {
-        //delay 20s 
-        _xyz("sang");
-    }
+    //public void sang1(int b, Action<string> _xyz )
+    //{
+    //    //delay 20s 
+    //    _xyz("sang");
+    //}
 
     public void ReportScore(int score)
     {
@@ -167,7 +167,7 @@ public class Lead : MonoBehaviour
                 }
                 else
                 {
-                    rank.text = "DEO GET Dc";
+                    rank.text = "Rank: ***";
                 }
             });
     }
