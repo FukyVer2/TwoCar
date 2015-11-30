@@ -124,6 +124,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameOver()
     {
+#if UNITY_ANDROID
+        Lead.instance.ReportScore(ScoreManager.Instance.score);
+        Lead.instance.GetRank();
+#endif
         isPlay = false;
         //AudioManager.Instance.StopBackground();
         ScoreManager.Instance.BestScore();
@@ -278,10 +282,6 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
-#if UNITY_ANDROID
-            Lead.instance.ReportScore(ScoreManager.Instance.score);
-            Lead.instance.GetRank();
-#endif
             continuePlay.SetActive(true);
             ContinuePlay();
         }
