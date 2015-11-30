@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -78,6 +79,7 @@ public class GameManager : MonoSingleton<GameManager>
 	        enemySpawner[i].SetDelay(minDelay, maxDelay);
 	    }
         ChartboostAndroid.Instance.RequestInterstitial(ChartboostSDK.CBLocation.Default);
+        Advertisement.Initialize("1019263");
     }
 	
 	// Update is called once per frame
@@ -190,6 +192,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void CarShop()
     {
+        if (Advertisement.isReady())
+        {
+            Advertisement.Show();
+        }
         ScoreManager.Instance.ShowGold();
         garage.SetActive(true);
     }
