@@ -18,12 +18,12 @@ public class Car : MonoBehaviour {
     public int time;
 
 	void Start ()
-	{
+	{ 
 	    transform.position = start.transform.position;
         image = gameObject.GetComponent<SpriteRenderer>();
 	}
-	
-	void Update () 
+
+	void Update ()
     {
         if (Mathf.Abs(transform.rotation.eulerAngles.z - (360.0f + _rotationTarget) % 360.0f) <= 5.0f)
         {

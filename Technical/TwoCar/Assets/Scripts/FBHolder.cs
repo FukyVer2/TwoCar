@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class FBHolder : MonoBehaviour
 {
-
-	void Start () {
+#if UNITY_ANDROID || UNITY_IOS
+    void Start () {
 	}	
 
 
@@ -119,5 +120,6 @@ public class FBHolder : MonoBehaviour
     //        Debug.Log("FacebookManager-publishActionCallback: success: " + result.Text);
     //    }
     //}
+#endif
 }
 

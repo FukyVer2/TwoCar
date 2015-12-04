@@ -78,8 +78,12 @@ public class GameManager : MonoSingleton<GameManager>
 	    {
 	        enemySpawner[i].SetDelay(minDelay, maxDelay);
 	    }
+#if UNITY_ANDROID || UNITY_IOS
         ChartboostAndroid.Instance.RequestInterstitial(ChartboostSDK.CBLocation.Default);
         Advertisement.Initialize("1019263");
+#elif UNITY_WP8
+        GoogleAdmobPlugin_WP8.Instance.RequestInterstitial();
+#endif
     }
 	
 	// Update is called once per frame
@@ -130,7 +134,12 @@ public class GameManager : MonoSingleton<GameManager>
 #if UNITY_ANDROID
         Lead.instance.ReportScore(ScoreManager.Instance.score);
         Lead.instance.GetRank();
-        Invoke("ShowAdmob", 0.2f);
+        if (Random.Range(0, 3) == 2)
+        {
+            Invoke("ShowAdmob", 0.2f);
+        }
+#elif UNITY_WP8
+        GoogleAdmobPlugin_WP8.Instance.ShowInterstitial();
 #endif
         isPlay = false;
         //AudioManager.Instance.StopBackground();
@@ -148,7 +157,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void ShowAdmob()
     {
+#if UNITY_ANDROID || UNITY_IOS
         ChartboostAndroid.Instance.ShowInterstitial(ChartboostSDK.CBLocation.Default);
+#endif
     }
 
     public void StartScene()
@@ -171,7 +182,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void PlayScene()
     {
+#if UNITY_ANDROID || UNITY_IOS
         MyApplycation.Instance.googleAnalytics.LogEvent("GamePlay", "PlayGame", "", (int)Time.fixedTime);
+#elif UNITY_WP8
+        //GoogleAdmobPlugin_WP8.Instance.ShowBanner();
+#endif
         ScoreManager.Instance.ShowGold();
         isPlay = true;
         ScoreManager.Instance.ResetScore();
@@ -438,6 +453,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Rate()
     {
+#if UNITY_ANDROID || UNITY_IOS
         Application.OpenURL("https://play.google.com/store/apps/details?id=com.fuky.cars");
+#endif
     }
 }

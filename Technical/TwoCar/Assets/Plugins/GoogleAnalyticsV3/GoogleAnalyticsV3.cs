@@ -137,14 +137,17 @@ public class GoogleAnalyticsV3 : MonoBehaviour {
   }
 
   private void HandleException(string condition, string stackTrace, LogType type) {
-    if (type == LogType.Exception) {
+#if !UNITY_WP8
+        if (type == LogType.Exception) {
       uncaughtExceptionStackTrace = condition + "\n" + stackTrace
           + UnityEngine.StackTraceUtility.ExtractStackTrace();
     }
-  }
+#endif
+    }
 
-  // TODO: Error checking on initialization parameters
-  private void InitializeTracker() {
+
+    // TODO: Error checking on initialization parameters
+    private void InitializeTracker() {
     if (!initialized) {
       instance = this;
 
@@ -229,7 +232,7 @@ public void DispatchHits() {
     InitializeTracker();
 #if UNITY_ANDROID && !UNITY_EDITOR
     androidTracker.StartSession();
-#elif UNITY_IPHONE  && !UNITY_EDITOR
+#elif UNITY_IPHONE && !UNITY_EDITOR
     iosTracker.StartSession();
 #else
     mpTracker.StartSession();
@@ -341,7 +344,7 @@ public void DispatchHits() {
     iosTracker.LogTransaction(builder);
 #else
     mpTracker.LogTransaction(builder);
-  #endif
+#endif
   }
 
   public void LogItem(string transID, string name, string sku,
