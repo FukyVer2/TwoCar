@@ -62,6 +62,9 @@ public class GameManager : MonoSingleton<GameManager>
     public ScoreManager scoreManager;
     public List<EnemySpawner> enemySpawner;
 
+    public GameObject freeContinue;
+    public GameObject earnDiamond;
+
     public Color startColor = Color.white; //new Color(11/255f,11/255f,11/255f,30/255f);
 
 	void Start ()
@@ -80,7 +83,7 @@ public class GameManager : MonoSingleton<GameManager>
 	    }
 #if UNITY_ANDROID || UNITY_IOS
         ChartboostAndroid.Instance.RequestInterstitial(ChartboostSDK.CBLocation.Default);
-        Advertisement.Initialize("1019263");
+        Advertisement.Initialize("1020748");
 #elif UNITY_WP8
         GoogleAdmobPlugin_WP8.Instance.RequestInterstitial();
 #endif
@@ -89,6 +92,10 @@ public class GameManager : MonoSingleton<GameManager>
 	// Update is called once per frame
 	void Update ()
 	{
+	    if (!Advertisement.isShowing && Time.timeScale == 0)
+	    {
+	        Time.timeScale = 1;
+	    }
 	    ChangeBackgroundColor();
 	    if (isDie)
 	    {
@@ -101,14 +108,8 @@ public class GameManager : MonoSingleton<GameManager>
 	    if (isPlay && !isPause)
 	    {
             scoreManager.AddScore();
-            //foreach (var spawner in enemySpawner)
-            //{
-            //    ChangeSpeed();
-            //    spawner.Spawn(minDelay, maxDelay);
-            //}
             for (int i = 0; i < enemySpawner.Count; i++)
             {
-                //enemySpawner[i].SetDelay(minDelay, maxDelay);
                 enemySpawner[i].Spawn(minDelay, maxDelay);
             }
         }
@@ -132,6 +133,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
 #if UNITY_ANDROID
+        MyApplycation.Instance.googleAnalytics.LogEvent("GameOver",ScoreManager.Instance.score.ToString(), "", (int)Time.fixedTime);
         Lead.instance.ReportScore(ScoreManager.Instance.score);
         Lead.instance.GetRank();
         if (Random.Range(0, 3) == 2)
@@ -141,6 +143,14 @@ public class GameManager : MonoSingleton<GameManager>
 #elif UNITY_WP8
         GoogleAdmobPlugin_WP8.Instance.ShowInterstitial();
 #endif
+        if (Advertisement.IsReady())
+        {
+            earnDiamond.SetActive(true);
+        }
+        else
+        {
+            earnDiamond.SetActive(false);
+        }
         isPlay = false;
         //AudioManager.Instance.StopBackground();
         ScoreManager.Instance.BestScore();
@@ -183,6 +193,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void PlayScene()
     {
 #if UNITY_ANDROID || UNITY_IOS
+        MyApplycation.Instance.googleAnalytics.LogEvent("GamePlay", "PlayGame", "", (int)Time.fixedTime);
         MyApplycation.Instance.googleAnalytics.LogEvent("GamePlay", "PlayGame", "", (int)Time.fixedTime);
 #elif UNITY_WP8
         //GoogleAdmobPlugin_WP8.Instance.ShowBanner();
@@ -270,6 +281,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Replay()
     {
+        MyApplycation.Instance.googleAnalytics.LogEvent("GamePlay", "ReplayGame", "", (int)Time.fixedTime);
         pause.SetActive(false);
         Unpause();
         PlayScene();
@@ -311,6 +323,17 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else
         {
+            if (Advertisement.IsReady() && buyBack < 5)
+            {
+                freeContinue.SetActive(true);
+                Debug.Log("checked");
+            }
+            else
+            {
+                freeContinue.SetActive(false);
+                Debug.Log("checked");
+
+            }
             continuePlay.SetActive(true);
             ContinuePlay();
         }
@@ -455,6 +478,23 @@ public class GameManager : MonoSingleton<GameManager>
     {
 #if UNITY_ANDROID || UNITY_IOS
         Application.OpenURL("https://play.google.com/store/apps/details?id=com.fuky.cars");
+#endif
+    }
+
+    public void FreeContinue()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Advertisement.Show("rewardedVideo");
+        Time.timeScale = 0;
+        ContinueButton();
+#endif
+    }
+
+    public void ShowReward()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Advertisement.Show("rewardedVideo");
+        ScoreManager.Instance.diamond += 5;
 #endif
     }
 }

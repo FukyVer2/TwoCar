@@ -94,6 +94,11 @@ public class ScoreManager : MonoSingleton<ScoreManager>
         if (score > PlayerPrefs.GetInt("HighScore"))
         {
             PlayerPrefs.SetInt("HighScore", score);
+            MyApplycation.Instance.googleAnalytics.LogEvent("Score", "HightScore" + score, "" + score, (int)Time.fixedTime);
+        }
+        else
+        {
+            MyApplycation.Instance.googleAnalytics.LogEvent("Score", "NoScore" + score, "" + score, (int)Time.fixedTime);
         }
         overHightScore.text = "Best: " + PlayerPrefs.GetInt("HighScore") + "m";
         PlayerPrefs.Save();
