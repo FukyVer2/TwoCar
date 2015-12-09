@@ -73,10 +73,6 @@ public class GameManager : MonoSingleton<GameManager>
         previousBackgroundColor = background.color;
 	    StartScene();
         Reset();
-        //foreach (var spawner in enemySpawner)
-        //{
-        //    spawner.SetDelay(minDelay, maxDelay);
-        //}
 	    for (int i = 0; i < enemySpawner.Count; i++)
 	    {
 	        enemySpawner[i].SetDelay(minDelay, maxDelay);
@@ -88,13 +84,14 @@ public class GameManager : MonoSingleton<GameManager>
         GoogleAdmobPlugin_WP8.Instance.RequestInterstitial();
 #endif
     }
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
 	    if (!Advertisement.isShowing && Time.timeScale == 0)
 	    {
 	        Time.timeScale = 1;
+
 	    }
 	    ChangeBackgroundColor();
 	    if (isDie)
@@ -187,13 +184,12 @@ public class GameManager : MonoSingleton<GameManager>
         pause.SetActive(false);
         buyGold.SetActive(false);
         garage.SetActive(false);
-        
+
     }
 
     public void PlayScene()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        MyApplycation.Instance.googleAnalytics.LogEvent("GamePlay", "PlayGame", "", (int)Time.fixedTime);
         MyApplycation.Instance.googleAnalytics.LogEvent("GamePlay", "PlayGame", "", (int)Time.fixedTime);
 #elif UNITY_WP8
         //GoogleAdmobPlugin_WP8.Instance.ShowBanner();
@@ -218,10 +214,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void CarShop()
     {
-        if (Advertisement.isReady())
-        {
-            Advertisement.Show();
-        }
+#if UNITY_ANDROID || UNITY_IOS
+        MyApplycation.Instance.googleAnalytics.LogEvent("Shop", "Shop", "", (int)Time.fixedTime);
+#endif
         ScoreManager.Instance.ShowGold();
         garage.SetActive(true);
     }
@@ -252,7 +247,7 @@ public class GameManager : MonoSingleton<GameManager>
             RandomBackgroundColor();
     }
 
-   
+
     public void BackUp()
     {
         _bkSpeed = speed;
@@ -332,7 +327,6 @@ public class GameManager : MonoSingleton<GameManager>
             {
                 freeContinue.SetActive(false);
                 Debug.Log("checked");
-
             }
             continuePlay.SetActive(true);
             ContinuePlay();
@@ -437,7 +431,7 @@ public class GameManager : MonoSingleton<GameManager>
             StartCd();
             continueDelay = 2f;
             continueImage.fillAmount = 0;
-            isContinue = true; 
+            isContinue = true;
         }
         else
         {
@@ -477,7 +471,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void Rate()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.fuky.cars");
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.Fuky.TapRacing");
 #endif
     }
 
@@ -485,8 +479,10 @@ public class GameManager : MonoSingleton<GameManager>
     {
 #if UNITY_ANDROID || UNITY_IOS
         Advertisement.Show("rewardedVideo");
+        ScoreManager.Instance.AddDiamon(buyBack);
         Time.timeScale = 0;
         ContinueButton();
+
 #endif
     }
 
@@ -494,7 +490,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
 #if UNITY_ANDROID || UNITY_IOS
         Advertisement.Show("rewardedVideo");
-        ScoreManager.Instance.diamond += 5;
+        ScoreManager.Instance.AddDiamon(5);
 #endif
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class LeaderBoard : MonoBehaviour
 {
     public static LeaderBoard instance;
-    private const string LEADERBOARD_SCORE = "CgkIopiSk-sYEAIQAQ";
+    private const string LEADERBOARD_SCORE = PlayGameServices.leaderboard_highscore;
     // Use this for initialization
     //public Text valid;
     public Text rank;

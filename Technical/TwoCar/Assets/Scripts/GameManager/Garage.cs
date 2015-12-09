@@ -35,12 +35,13 @@ public class Garage : MonoSingleton<Garage>
 	void Start ()
 	{
         isBuy = new bool[listBuyButtons.Count];
+	    isBuy[0] = true;
         //PlayerPrefsX.SetBoolArray("Buy", isBuy);
         if (!PlayerPrefs.HasKey("Buy"))
 	    {
 	        PlayerPrefsX.SetBoolArray("Buy", isBuy);
 	    }
-        price = new []{100, 500, 1000,5000,10000, 20000, 40000};
+        price = new []{100, 1000, 5000,15000,25000, 40000, 100000};
 	    isBuy = PlayerPrefsX.GetBoolArray("Buy");
         button2.color = disableColor;
         CheckUnlock();

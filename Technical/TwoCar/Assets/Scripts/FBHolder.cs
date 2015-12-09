@@ -82,7 +82,7 @@ public class FBHolder : MonoBehaviour
 			linkCaption: "I'm playing this awesome game",
 			//picture: "http://robovina.com/uploads/news/2015_03/autobase1.png",
 			linkName: "LET'S RACE",
-            link: "https://play.google.com/store/apps/details?id=com.Fuky.Cars"
+            link: "https://play.google.com/store/apps/details?id=com.Fuky.TapRacing"
             //link: "http://apps.facebook.com/" + FB.AppId + "/?challenge_brag=" + (FB.IsLoggedIn ? FB.UserId : "Guest")
             //link: "https://play.google.com/store/apps/details?id=den.pin",
             //mediaSource: "https://www.youtube.com/watch?v=dAXW1R_aoz4"

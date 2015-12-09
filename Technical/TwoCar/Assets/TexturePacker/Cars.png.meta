@@ -85,6 +85,12 @@ TextureImporter:
     21300160: pixel5 - Copy - Copy
     21300162: road_xanh
     21300164: HomeButton2
+    21300166: Jewelry10
+    21300168: Jewelry11
+    21300170: Jewelry12
+    21300172: Jewelry13
+    21300174: Time
+    21300176: circle
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -105,7 +111,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   textureSettings:
     filterMode: 2
     aniso: 16
@@ -133,8 +139,8 @@ TextureImporter:
     - name: 1
       rect:
         serializedVersion: 2
-        x: 1540
-        y: 13
+        x: 1661
+        y: 156
         width: 74
         height: 63
       alignment: 9
@@ -143,8 +149,8 @@ TextureImporter:
     - name: 10
       rect:
         serializedVersion: 2
-        x: 1896
-        y: 167
+        x: 504
+        y: 17
         width: 78
         height: 92
       alignment: 9
@@ -153,8 +159,8 @@ TextureImporter:
     - name: 2
       rect:
         serializedVersion: 2
-        x: 1854
-        y: 85
+        x: 1811
+        y: 270
         width: 78
         height: 80
       alignment: 9
@@ -163,8 +169,8 @@ TextureImporter:
     - name: 3
       rect:
         serializedVersion: 2
-        x: 1270
-        y: 142
+        x: 331
+        y: 3
         width: 85
         height: 106
       alignment: 9
@@ -173,8 +179,8 @@ TextureImporter:
     - name: 4
       rect:
         serializedVersion: 2
-        x: 1108
-        y: 358
+        x: 1439
+        y: 266
         width: 95
         height: 116
       alignment: 9
@@ -183,8 +189,8 @@ TextureImporter:
     - name: 5
       rect:
         serializedVersion: 2
-        x: 1837
-        y: 276
+        x: 1772
+        y: 594
         width: 100
         height: 115
       alignment: 9
@@ -193,8 +199,8 @@ TextureImporter:
     - name: 6
       rect:
         serializedVersion: 2
-        x: 1170
-        y: 137
+        x: 1536
+        y: 271
         width: 98
         height: 111
       alignment: 9
@@ -203,8 +209,8 @@ TextureImporter:
     - name: 7
       rect:
         serializedVersion: 2
-        x: 1357
-        y: 148
+        x: 240
+        y: 9
         width: 89
         height: 100
       alignment: 9
@@ -213,8 +219,8 @@ TextureImporter:
     - name: 8
       rect:
         serializedVersion: 2
-        x: 1357
-        y: 148
+        x: 240
+        y: 9
         width: 89
         height: 100
       alignment: 9
@@ -223,8 +229,8 @@ TextureImporter:
     - name: 9
       rect:
         serializedVersion: 2
-        x: 1810
-        y: 178
+        x: 418
+        y: 13
         width: 84
         height: 96
       alignment: 9
@@ -233,8 +239,8 @@ TextureImporter:
     - name: BuyButton
       rect:
         serializedVersion: 2
-        x: 868
-        y: 20
+        x: 933
+        y: 36
         width: 287
         height: 127
       alignment: 0
@@ -243,8 +249,8 @@ TextureImporter:
     - name: Car1a1
       rect:
         serializedVersion: 2
-        x: 1939
-        y: 261
+        x: 1222
+        y: 2
         width: 80
         height: 130
       alignment: 9
@@ -253,8 +259,8 @@ TextureImporter:
     - name: Car1b1
       rect:
         serializedVersion: 2
-        x: 1157
-        y: 5
+        x: 1304
+        y: 2
         width: 80
         height: 130
       alignment: 9
@@ -263,8 +269,8 @@ TextureImporter:
     - name: Car1c1
       rect:
         serializedVersion: 2
-        x: 1239
-        y: 5
+        x: 1386
+        y: 2
         width: 80
         height: 130
       alignment: 9
@@ -273,8 +279,8 @@ TextureImporter:
     - name: Car2a1
       rect:
         serializedVersion: 2
-        x: 1540
-        y: 78
+        x: 1439
+        y: 134
         width: 78
         height: 130
       alignment: 9
@@ -283,8 +289,8 @@ TextureImporter:
     - name: Car2c1
       rect:
         serializedVersion: 2
-        x: 1620
-        y: 78
+        x: 1468
+        y: 2
         width: 78
         height: 130
       alignment: 9
@@ -293,8 +299,8 @@ TextureImporter:
     - name: Car3a1
       rect:
         serializedVersion: 2
-        x: 1321
-        y: 9
+        x: 1588
+        y: 138
         width: 71
         height: 131
       alignment: 9
@@ -303,8 +309,8 @@ TextureImporter:
     - name: Car3b1
       rect:
         serializedVersion: 2
-        x: 1394
-        y: 15
+        x: 1625
+        y: 5
         width: 71
         height: 131
       alignment: 9
@@ -313,8 +319,8 @@ TextureImporter:
     - name: Car3c1
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 34
+        x: 1738
+        y: 219
         width: 71
         height: 131
       alignment: 9
@@ -323,8 +329,8 @@ TextureImporter:
     - name: Car4a1
       rect:
         serializedVersion: 2
-        x: 1700
-        y: 79
+        x: 1548
+        y: 3
         width: 75
         height: 129
       alignment: 9
@@ -333,8 +339,8 @@ TextureImporter:
     - name: Car4b1
       rect:
         serializedVersion: 2
-        x: 1777
-        y: 47
+        x: 1661
+        y: 221
         width: 75
         height: 129
       alignment: 9
@@ -343,8 +349,8 @@ TextureImporter:
     - name: Car5a1
       rect:
         serializedVersion: 2
-        x: 1976
-        y: 129
+        x: 1519
+        y: 134
         width: 67
         height: 130
       alignment: 9
@@ -353,8 +359,8 @@ TextureImporter:
     - name: Circle1
       rect:
         serializedVersion: 2
-        x: 1808
-        y: 807
+        x: 1135
+        y: 336
         width: 200
         height: 203
       alignment: 0
@@ -363,8 +369,8 @@ TextureImporter:
     - name: Circle2
       rect:
         serializedVersion: 2
-        x: 542
-        y: 51
+        x: 1811
+        y: 218
         width: 50
         height: 50
       alignment: 0
@@ -373,8 +379,8 @@ TextureImporter:
     - name: Coin1
       rect:
         serializedVersion: 2
-        x: 1854
-        y: 33
+        x: 1841
+        y: 166
         width: 50
         height: 50
       alignment: 0
@@ -383,8 +389,8 @@ TextureImporter:
     - name: FaceBookButton
       rect:
         serializedVersion: 2
-        x: 1616
-        y: 25
+        x: 1789
+        y: 165
         width: 50
         height: 51
       alignment: 0
@@ -393,28 +399,18 @@ TextureImporter:
     - name: GameOver
       rect:
         serializedVersion: 2
-        x: 604
-        y: 319
+        x: 1370
+        y: 554
         width: 400
         height: 155
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: HighScore
-      rect:
-        serializedVersion: 2
-        x: 1508
-        y: 210
-        width: 300
-        height: 50
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: HomeButton
       rect:
         serializedVersion: 2
-        x: 1668
-        y: 26
+        x: 1698
+        y: 104
         width: 48
         height: 50
       alignment: 0
@@ -423,38 +419,58 @@ TextureImporter:
     - name: HomeButton2
       rect:
         serializedVersion: 2
-        x: 1718
-        y: 27
+        x: 1698
+        y: 52
         width: 50
         height: 50
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Jewelry1
+    - name: Jewelry10
       rect:
         serializedVersion: 2
-        x: 1448
-        y: 195
+        x: 2
+        y: 3
         width: 50
-        height: 53
+        height: 54
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Line
+    - name: Jewelry11
       rect:
         serializedVersion: 2
-        x: 2010
-        y: 978
-        width: 12
-        height: 32
+        x: 54
+        y: 3
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jewelry12
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 3
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jewelry13
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 3
+        width: 50
+        height: 54
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Lock
       rect:
         serializedVersion: 2
-        x: 604
-        y: 476
+        x: 1737
+        y: 160
         width: 50
         height: 57
       alignment: 0
@@ -463,8 +479,8 @@ TextureImporter:
     - name: Mute
       rect:
         serializedVersion: 2
-        x: 1906
-        y: 33
+        x: 1748
+        y: 108
         width: 48
         height: 50
       alignment: 0
@@ -473,8 +489,8 @@ TextureImporter:
     - name: OptionBG
       rect:
         serializedVersion: 2
-        x: 1406
-        y: 798
+        x: 704
+        y: 579
         width: 400
         height: 212
       alignment: 0
@@ -483,8 +499,8 @@ TextureImporter:
     - name: PauseButton
       rect:
         serializedVersion: 2
-        x: 594
-        y: 15
+        x: 1750
+        y: 56
         width: 50
         height: 50
       alignment: 0
@@ -493,8 +509,8 @@ TextureImporter:
     - name: Plate1
       rect:
         serializedVersion: 2
-        x: 304
-        y: 51
+        x: 2
+        y: 59
         width: 236
         height: 50
       alignment: 0
@@ -503,8 +519,8 @@ TextureImporter:
     - name: Play
       rect:
         serializedVersion: 2
-        x: 868
-        y: 149
+        x: 1370
+        y: 384
         width: 300
         height: 168
       alignment: 0
@@ -514,7 +530,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 103
+        y: 111
         width: 600
         height: 430
       alignment: 0
@@ -523,8 +539,8 @@ TextureImporter:
     - name: PlayButton
       rect:
         serializedVersion: 2
-        x: 1837
-        y: 393
+        x: 933
+        y: 415
         width: 161
         height: 162
       alignment: 9
@@ -533,8 +549,8 @@ TextureImporter:
     - name: PlusButton
       rect:
         serializedVersion: 2
-        x: 646
-        y: 15
+        x: 1750
+        y: 4
         width: 50
         height: 50
       alignment: 0
@@ -543,8 +559,8 @@ TextureImporter:
     - name: Price
       rect:
         serializedVersion: 2
-        x: 1006
-        y: 323
+        x: 1135
+        y: 183
         width: 100
         height: 33
       alignment: 0
@@ -553,8 +569,8 @@ TextureImporter:
     - name: RateButton
       rect:
         serializedVersion: 2
-        x: 1956
-        y: 77
+        x: 1798
+        y: 113
         width: 47
         height: 50
       alignment: 0
@@ -563,8 +579,8 @@ TextureImporter:
     - name: RePlay
       rect:
         serializedVersion: 2
-        x: 604
-        y: 67
+        x: 1106
+        y: 541
         width: 262
         height: 250
       alignment: 0
@@ -573,30 +589,10 @@ TextureImporter:
     - name: RePlayBG
       rect:
         serializedVersion: 2
-        x: 704
-        y: 476
+        x: 1406
+        y: 711
         width: 500
         height: 307
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Score
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 3
-        width: 200
-        height: 46
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ScoreBackground
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 31
-        width: 300
-        height: 70
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -604,7 +600,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 704
-        y: 785
+        y: 793
         width: 700
         height: 225
       alignment: 0
@@ -613,8 +609,8 @@ TextureImporter:
     - name: ShopButton
       rect:
         serializedVersion: 2
-        x: 698
-        y: 15
+        x: 1847
+        y: 114
         width: 50
         height: 50
       alignment: 0
@@ -624,7 +620,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 535
+        y: 543
         width: 700
         height: 475
       alignment: 0
@@ -633,8 +629,8 @@ TextureImporter:
     - name: ShowRoom3
       rect:
         serializedVersion: 2
-        x: 1837
-        y: 557
+        x: 933
+        y: 165
         width: 200
         height: 248
       alignment: 9
@@ -643,8 +639,8 @@ TextureImporter:
     - name: SoundButton
       rect:
         serializedVersion: 2
-        x: 802
-        y: 15
+        x: 1802
+        y: 61
         width: 48
         height: 50
       alignment: 0
@@ -653,8 +649,8 @@ TextureImporter:
     - name: Square1
       rect:
         serializedVersion: 2
-        x: 1006
-        y: 358
+        x: 1135
+        y: 218
         width: 100
         height: 116
       alignment: 0
@@ -663,8 +659,8 @@ TextureImporter:
     - name: Street1
       rect:
         serializedVersion: 2
-        x: 1206
-        y: 250
+        x: 604
+        y: 8
         width: 300
         height: 533
       alignment: 0
@@ -673,8 +669,8 @@ TextureImporter:
     - name: Street2
       rect:
         serializedVersion: 2
-        x: 1833
-        y: 305
+        x: 929
+        y: 77
         width: 2
         height: 500
       alignment: 0
@@ -683,8 +679,8 @@ TextureImporter:
     - name: Street3
       rect:
         serializedVersion: 2
-        x: 1826
-        y: 305
+        x: 922
+        y: 77
         width: 5
         height: 500
       alignment: 0
@@ -693,18 +689,28 @@ TextureImporter:
     - name: Street4
       rect:
         serializedVersion: 2
-        x: 1810
-        y: 305
+        x: 906
+        y: 77
         width: 14
         height: 500
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Time
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 352
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: WoodenBox1
       rect:
         serializedVersion: 2
-        x: 750
-        y: 15
+        x: 1802
+        y: 9
         width: 50
         height: 50
       alignment: 0
@@ -713,20 +719,20 @@ TextureImporter:
     - name: XButton
       rect:
         serializedVersion: 2
-        x: 506
-        y: 8
+        x: 1698
+        y: 9
         width: 50
         height: 41
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: road_xanh
+    - name: circle
       rect:
         serializedVersion: 2
-        x: 1508
-        y: 262
-        width: 300
-        height: 534
+        x: 1237
+        y: 134
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

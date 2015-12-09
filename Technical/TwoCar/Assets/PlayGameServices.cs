@@ -24,12 +24,12 @@
 
 public static class PlayGameServices
 {
-        public const string achievement_score3 = "CgkIopiSk-sYEAIQBA"; // <GPGSID>
-        public const string achievement_score4 = "CgkIopiSk-sYEAIQBQ"; // <GPGSID>
-        public const string achievement_score5 = "CgkIopiSk-sYEAIQBg"; // <GPGSID>
-        public const string achievement_score = "CgkIopiSk-sYEAIQAg"; // <GPGSID>
-        public const string leaderboard_highscore = "CgkIopiSk-sYEAIQAQ"; // <GPGSID>
-        public const string achievement_score2 = "CgkIopiSk-sYEAIQAw"; // <GPGSID>
+        public const string achievement_racing_1 = "CgkIsoPQiIAIEAIQAg"; // <GPGSID>
+        public const string achievement_racing_2 = "CgkIsoPQiIAIEAIQAw"; // <GPGSID>
+        public const string achievement_racing_3 = "CgkIsoPQiIAIEAIQBQ"; // <GPGSID>
+        public const string achievement_racing_4 = "CgkIsoPQiIAIEAIQBg"; // <GPGSID>
+        public const string achievement_racing_5 = "CgkIsoPQiIAIEAIQBA"; // <GPGSID>
+        public const string leaderboard_highscore = "CgkIsoPQiIAIEAIQBw"; // <GPGSID>
 
 }
 
