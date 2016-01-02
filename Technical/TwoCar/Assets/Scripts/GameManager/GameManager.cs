@@ -66,6 +66,7 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject earnDiamond;
 
     public Color startColor = Color.white; //new Color(11/255f,11/255f,11/255f,30/255f);
+    public string unityAdsID;
 
 	void Start ()
 	{
@@ -79,7 +80,7 @@ public class GameManager : MonoSingleton<GameManager>
 	    }
 #if UNITY_ANDROID || UNITY_IOS
         ChartboostAndroid.Instance.RequestInterstitial(ChartboostSDK.CBLocation.Default);
-        Advertisement.Initialize("1020748");
+        Advertisement.Initialize(unityAdsID);
 #elif UNITY_WP8
         GoogleAdmobPlugin_WP8.Instance.RequestInterstitial();
 #endif
@@ -130,15 +131,15 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
 #if UNITY_ANDROID
-        MyApplycation.Instance.googleAnalytics.LogEvent("GameOver",ScoreManager.Instance.score.ToString(), "", (int)Time.fixedTime);
-        Lead.instance.ReportScore(ScoreManager.Instance.score);
+        MyApplycation.Instance.googleAnalytics.LogEvent("GameOver", ScoreManager.Instance.score.ToString(), "", (int)Time.fixedTime);
+        Lead.instance.ReportScore(PlayerPrefs.GetInt("HighScore"));
         Lead.instance.GetRank();
         if (Random.Range(0, 3) == 2)
         {
             Invoke("ShowAdmob", 0.2f);
         }
 #elif UNITY_WP8
-        GoogleAdmobPlugin_WP8.Instance.ShowInterstitial();
+                GoogleAdmobPlugin_WP8.Instance.ShowInterstitial();
 #endif
         if (Advertisement.IsReady())
         {
@@ -410,11 +411,11 @@ public class GameManager : MonoSingleton<GameManager>
                 velo *= -3f;
             }
         }
-        if (speed < maxSpeed || velo < 0)
+        if (speed < maxSpeed/* || velo < 0*/)
         {
             speed += velo;
-            minDelay -= velo/9;
-            maxDelay -= velo/9;
+            minDelay -= velo/10;
+            maxDelay -= velo/10;
         }
     }
 
