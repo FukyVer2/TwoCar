@@ -456,7 +456,13 @@ public class GameManager : MonoSingleton<GameManager>
             buyBack +=2;
             ScoreManager.Instance.ShowGold();
             isContinue = false;
+            ClearObstacles();
         }
+    }
+
+    public void ClearObstacles()
+    {
+        PoolObject.DespawnAll("Enemy");
     }
 
     public void ShowNotEnough()
@@ -483,7 +489,7 @@ public class GameManager : MonoSingleton<GameManager>
         ScoreManager.Instance.AddDiamon(buyBack);
         Time.timeScale = 0;
         ContinueButton();
-
+        ClearObstacles();
 #endif
     }
 

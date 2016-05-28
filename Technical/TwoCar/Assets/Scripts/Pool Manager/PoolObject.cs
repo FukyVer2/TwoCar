@@ -2,7 +2,7 @@
 using System.Collections;
 using PathologicalGames;
 
-public class PoolObject : MonoBehaviour
+public class PoolObject : MonoSingleton<PoolObject>
 {
     public static Transform SpawnObject(string poolName, GameObject obj, Vector3 pos)
     {
